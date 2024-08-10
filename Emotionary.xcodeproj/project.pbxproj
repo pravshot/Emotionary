@@ -12,6 +12,9 @@
 		C95519FD2C67CFA700F2E072 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95519FC2C67CFA700F2E072 /* Item.swift */; };
 		C95519FF2C67CFA900F2E072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C95519FE2C67CFA900F2E072 /* Assets.xcassets */; };
 		C9551A022C67CFA900F2E072 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9551A012C67CFA900F2E072 /* Preview Assets.xcassets */; };
+		C9551A0A2C67E50C00F2E072 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A092C67E50C00F2E072 /* Expression.swift */; };
+		C9551A0C2C67E68000F2E072 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A0B2C67E68000F2E072 /* Emotion.swift */; };
+		C9551A0E2C67EA7700F2E072 /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A0D2C67EA7700F2E072 /* Prompt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +24,9 @@
 		C95519FC2C67CFA700F2E072 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C95519FE2C67CFA900F2E072 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9551A012C67CFA900F2E072 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C9551A092C67E50C00F2E072 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
+		C9551A0B2C67E68000F2E072 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
+		C9551A0D2C67EA7700F2E072 /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,7 @@
 		C95519F72C67CFA700F2E072 /* Emotionary */ = {
 			isa = PBXGroup;
 			children = (
+				C9551A082C67E4BA00F2E072 /* Models */,
 				C95519F82C67CFA700F2E072 /* EmotionaryApp.swift */,
 				C95519FA2C67CFA700F2E072 /* ContentView.swift */,
 				C95519FC2C67CFA700F2E072 /* Item.swift */,
@@ -68,6 +75,16 @@
 				C9551A012C67CFA900F2E072 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C9551A082C67E4BA00F2E072 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C9551A092C67E50C00F2E072 /* Expression.swift */,
+				C9551A0B2C67E68000F2E072 /* Emotion.swift */,
+				C9551A0D2C67EA7700F2E072 /* Prompt.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,8 +158,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C95519FB2C67CFA700F2E072 /* ContentView.swift in Sources */,
+				C9551A0E2C67EA7700F2E072 /* Prompt.swift in Sources */,
+				C9551A0C2C67E68000F2E072 /* Emotion.swift in Sources */,
 				C95519FD2C67CFA700F2E072 /* Item.swift in Sources */,
 				C95519F92C67CFA700F2E072 /* EmotionaryApp.swift in Sources */,
+				C9551A0A2C67E50C00F2E072 /* Expression.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
