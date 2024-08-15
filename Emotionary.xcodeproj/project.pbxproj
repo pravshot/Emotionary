@@ -25,7 +25,6 @@
 		C9551A202C6930E100F2E072 /* AllEmotions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A1F2C6930E100F2E072 /* AllEmotions.swift */; };
 		C9551A232C69B14800F2E072 /* ExpressionPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A222C69B14800F2E072 /* ExpressionPrompt.swift */; };
 		C9551A252C69B90C00F2E072 /* DrawExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A242C69B90B00F2E072 /* DrawExpression.swift */; };
-		C9551A272C69BEA600F2E072 /* DrawingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A262C69BEA600F2E072 /* DrawingCanvas.swift */; };
 		C9551A292C6BCC0000F2E072 /* ExpressionForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A282C6BCBFF00F2E072 /* ExpressionForm.swift */; };
 		C9551A2B2C6D633A00F2E072 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A2A2C6D633900F2E072 /* test.swift */; };
 /* End PBXBuildFile section */
@@ -50,7 +49,6 @@
 		C9551A1F2C6930E100F2E072 /* AllEmotions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEmotions.swift; sourceTree = "<group>"; };
 		C9551A222C69B14800F2E072 /* ExpressionPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionPrompt.swift; sourceTree = "<group>"; };
 		C9551A242C69B90B00F2E072 /* DrawExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawExpression.swift; sourceTree = "<group>"; };
-		C9551A262C69BEA600F2E072 /* DrawingCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvas.swift; sourceTree = "<group>"; };
 		C9551A282C6BCBFF00F2E072 /* ExpressionForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionForm.swift; sourceTree = "<group>"; };
 		C9551A2A2C6D633900F2E072 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,7 +142,6 @@
 			children = (
 				C9551A222C69B14800F2E072 /* ExpressionPrompt.swift */,
 				C9551A242C69B90B00F2E072 /* DrawExpression.swift */,
-				C9551A262C69BEA600F2E072 /* DrawingCanvas.swift */,
 				C9551A282C6BCBFF00F2E072 /* ExpressionForm.swift */,
 			);
 			path = "Create Expression";
@@ -225,7 +222,6 @@
 				C9551A0E2C67EA7700F2E072 /* Prompt.swift in Sources */,
 				C9551A192C685DE900F2E072 /* NewExpression.swift in Sources */,
 				C9551A1E2C69300200F2E072 /* GalleryView.swift in Sources */,
-				C9551A272C69BEA600F2E072 /* DrawingCanvas.swift in Sources */,
 				C9551A0C2C67E68000F2E072 /* Emotion.swift in Sources */,
 				C9551A2B2C6D633A00F2E072 /* test.swift in Sources */,
 				C9551A292C6BCC0000F2E072 /* ExpressionForm.swift in Sources */,
