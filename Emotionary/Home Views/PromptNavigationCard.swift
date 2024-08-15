@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PromptNavigationCard: View {
     @State var prompt: String
+    var isTodaysExpression: Bool
     
     var body: some View {
         NavigationStack {
@@ -30,7 +31,7 @@ struct PromptNavigationCard: View {
                         }
                     }
                     NavigationLink() {
-                        DrawExpression(prompt: prompt)
+                        DrawExpression(prompt: prompt, isTodaysExpression: isTodaysExpression)
                     } label: {
                         Image(systemName: "arrowshape.forward.circle.fill")
                             .resizable()
@@ -44,5 +45,5 @@ struct PromptNavigationCard: View {
 }
 
 #Preview {
-    PromptNavigationCard(prompt: Prompt.random())
+    PromptNavigationCard(prompt: Prompt.random(), isTodaysExpression: true)
 }

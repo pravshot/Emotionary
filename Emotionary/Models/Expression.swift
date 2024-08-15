@@ -7,19 +7,27 @@
 
 import Foundation
 import SwiftData
+import UIKit
 
 @Model
-final class Expression {
+final class Expression: Identifiable {
+    let id = UUID()
+    
     var title: String
     var caption: String?
     var emotion: Emotion
-    // var drawing : ???
-    var prompt: Prompt
+    @Attribute(.externalStorage) var drawing : Data
+    var prompt: String
+    var date: Date
+    var favorite: Bool
     
-    init(title: String, caption: String? = nil, emotion: Emotion, prompt: Prompt) {
-        self.title = title
-        self.caption = caption
+    init(drawing: Data, emotion: Emotion, prompt: String, title: String, caption: String?, date: Date = Date(), favorite: Bool = false) {
+        self.drawing = drawing
         self.emotion = emotion
         self.prompt = prompt
+        self.title = title
+        self.caption = caption
+        self.date = date
+        self.favorite = favorite
     }
 }

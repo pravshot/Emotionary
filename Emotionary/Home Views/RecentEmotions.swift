@@ -19,22 +19,36 @@ struct RecentEmotions: View {
                         x: .value("History", index),
                         y: .value("Mood", emotions[index].rawValue)
                     )
+                    .foregroundStyle(.gray)
                     PointMark(
                         x: .value("History", index),
                         y: .value("Mood", emotions[index].rawValue)
                     )
+                    .symbol {
+                        Image(emotions[index].icon)
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                    }
                     .foregroundStyle(.accent)
                 }
             }
-            .frame(maxHeight: 200)
+            .chartXAxis(.hidden)
+            .chartYAxis {
+                AxisMarks() {
+                    AxisGridLine()
+                }
+            }
+            .frame(minHeight: 150, maxHeight: 200)
+            .padding(.horizontal)
             
         } label: {
-            Text("Your Recent Emotions")
+            Text("Recent Emotions")
                 .font(.headline)
         }
     }
 }
 
+
 #Preview {
-    RecentEmotions(emotions: [.upset, .content, .neutral, .happy, .neutral, .sad])
+    RecentEmotions(emotions: [.upset, .content, .neutral, .happy, .sad])
 }

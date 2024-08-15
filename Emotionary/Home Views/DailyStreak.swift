@@ -14,17 +14,30 @@ struct DailyStreak: View {
     var body: some View {
         GroupBox {
             HStack {
-                ZStack {
-                    Circle()
-                        .foregroundStyle(.accent)
-                    Text(String(streak))
-                        .font(.title)
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                        .foregroundStyle(.white)
+                GroupBox {
+                    VStack {
+                        Image(streak > 0 ? Emotion.happy.icon : Emotion.sad.icon)
+                            .resizable()
+                            .scaledToFit()
+                        Spacer()
+                        Text(String(streak))
+                            .font(.title)
+                            .foregroundStyle(.white)
+                            .bold()
+                        Text(streak == 1 ? "day" : "days")
+                            .font(.subheadline)
+                            .foregroundStyle(.white)
+                    }
                 }
-                Text("day streak")
+                .backgroundStyle(Emotion.happy.color)
+                GroupBox {
+                    Image(systemName: "calendar")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(.gray)
+                }
             }
-            .frame(maxHeight: 100)
+            .frame(maxHeight: 150)
             
         } label: {
             Text("Daily Streak")
@@ -34,5 +47,5 @@ struct DailyStreak: View {
 }
 
 #Preview {
-    DailyStreak(streak: 50)
+    DailyStreak(streak: 40)
 }

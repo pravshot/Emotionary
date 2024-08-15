@@ -8,11 +8,50 @@
 import SwiftUI
 
 struct MenuBar: View {
+    
+    @Binding var activeScreen: Screen
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(alignment: .bottom) {
+            Spacer()
+            VStack {
+                Button {
+                    activeScreen = .home
+                } label: {
+                    Image(systemName: "house.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(activeScreen == .home ? .accent : .gray)
+                    
+                }
+                Text("Home")
+                    .font(.system(size:8))
+            }
+            Spacer()
+            VStack {
+                Button {
+                    activeScreen = .gallery
+                } label: {
+                    Image(systemName: "photo.on.rectangle.angled")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(activeScreen == .gallery ? .accent : .gray)
+                }
+                Text("Gallery")
+                    .font(.system(size:8))
+            }
+            Spacer()
+        }
+        .frame(minHeight: 30, maxHeight: 40)
     }
 }
 
 #Preview {
-    MenuBar()
+    struct Preview : View {
+        @State var activeScreen: Screen = .home
+        var body : some View {
+            MenuBar(activeScreen: $activeScreen)
+        }
+    }
+    return Preview()
 }
