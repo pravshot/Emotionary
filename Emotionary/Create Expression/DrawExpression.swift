@@ -31,7 +31,7 @@ struct DrawExpression: View {
                        isDrawing: $isDrawing,
                        onChange: {
                             refreshView.toggle()
-                            expression.drawing = getUIImage(canvas).pngData() ?? Data()
+                            expression.drawing = getUIImageFromCanvas(canvas).pngData() ?? Data()
                         }
             )
                 .toolbar {
@@ -83,7 +83,7 @@ struct DrawExpression: View {
     }
 }
 
-func getUIImage(_ canvas: PKCanvasView) -> UIImage {
+func getUIImageFromCanvas(_ canvas: PKCanvasView) -> UIImage {
     return canvas.drawing.image(from: canvas.drawing.bounds, scale: UIScreen.current?.scale ?? 1)
 }
 func isCanvasEmpty(_ canvas: PKCanvasView) -> Bool {

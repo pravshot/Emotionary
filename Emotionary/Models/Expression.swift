@@ -10,9 +10,7 @@ import SwiftData
 import UIKit
 
 @Model
-final class Expression: Identifiable {
-    let id = UUID()
-    
+final class Expression {
     var title: String
     var caption: String
     var emotion: Emotion?
@@ -36,5 +34,9 @@ final class Expression: Identifiable {
         self.caption = caption
         self.date = date
         self.favorite = favorite
+    }
+    
+    func getUIImage() -> UIImage {
+        return UIImage(data: self.drawing) ?? UIImage()
     }
 }

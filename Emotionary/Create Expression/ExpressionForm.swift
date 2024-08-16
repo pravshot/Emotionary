@@ -19,7 +19,7 @@ struct ExpressionForm: View {
     var body: some View {
         VStack(alignment: .leading) {
             GroupBox {
-                Image(uiImage: UIImage(data: expression.drawing) ?? UIImage())
+                Image(uiImage: expression.getUIImage())
                     .resizable()
                     .scaledToFit()
 //                    .frame(width: 200, height: 200)
