@@ -6,17 +6,28 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct GalleryView: View {
+    @Query(sort: \Expression.date) private var expressions: [Expression]
+    
     var body: some View {
-        VStack {
-            Text("Your expressions")
-                .font(.title)
-                .fontWeight(.bold)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top)
+        ScrollView {
+            VStack {
+                Text("Your expressions")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top)
+                ForEach(expressions) { expression in
+                    VStack {
+                        Image(uiImage: expression.getUIImage())
+                        Text(expression.title)
+                    }
+                }
+            }
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
     }
 }
 

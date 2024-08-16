@@ -12,13 +12,15 @@ struct DrawExpression: View {
     @Binding var path: [NavPath]
     @Binding var expression: Expression
     var isTodaysExpression: Bool
-    @State var refreshView = false
     
+    @State var refreshView = false
     @State var canvas = PKCanvasView()
     @State var color: Color = .accentColor
     @State var drawingTool: PKInkingTool.InkType = .pen
     @State var isDrawing = true
     @Environment(\.undoManager) var undoManager
+    
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         VStack {
@@ -72,14 +74,26 @@ struct DrawExpression: View {
                 .frame(height: nil)
         }
         .toolbar {
-            ToolbarItemGroup {
+            // Go back to Home
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("Home")
+                    }
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink(value: NavPath.ExpressionForm) {
                     Text("Next")
                 }
                 .disabled(isCanvasEmpty(canvas))
             }
         }
-        .navigationTitle("New Expression")
+        .navigationTitle(isTodaysExpression ? "Today's Expression" : "New Expression")
+        .navigationBarBackButtonHidden()
     }
 }
 

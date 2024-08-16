@@ -12,6 +12,7 @@ struct ExpressionForm: View {
     @Binding var expression: Expression
     var isTodaysExpression: Bool
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.presentationMode) var presentationMode
 //    @State var selectedEmotion: Emotion? = nil
 //    @State var title: String = ""
 //    @State var description: String = ""
@@ -25,10 +26,7 @@ struct ExpressionForm: View {
 //                    .frame(width: 200, height: 200)
             }
             
-            Text(isTodaysExpression ?
-                 "Today's expression makes me feel..."
-                 : "This expression makes me feel..."
-            )
+            Text("This expression makes me feel...")
                 .font(.headline)
                 .fontWeight(.bold)
             
@@ -50,6 +48,17 @@ struct ExpressionForm: View {
         }
         .padding(.horizontal)
         .toolbar {
+            // Go back to DrawingView
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("Edit")
+                    }
+                }
+            }
             ToolbarItemGroup(placement: .topBarTrailing) {
                 ShareLink(
                     item: Image(uiImage: UIImage(data: expression.drawing) ?? UIImage()),
@@ -59,15 +68,14 @@ struct ExpressionForm: View {
                     )
                 )
                 Button("Done") {
-                    // save expression
-                    modelContext.insert(expression)
-                    // return back to home view
-                    path.removeAll()
+                    modelContext.insert(expression) // save expression
+                    path.removeAll() // return back to home view
                 }
                 .disabled((expression.emotion == nil) || expression.title.isEmpty)
             }
         }
-        .navigationTitle("New Expression")
+        .navigationTitle(isTodaysExpression ? "Today's Expression" : "New Expression")
+        .navigationBarBackButtonHidden()
     }
 }
 

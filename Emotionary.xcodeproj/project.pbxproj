@@ -123,8 +123,6 @@
 			children = (
 				C9551A102C67F98800F2E072 /* DailyStreak.swift */,
 				C9551A122C67F9BE00F2E072 /* RecentEmotions.swift */,
-				C9551A162C685DA200F2E072 /* PromptNavigationCard.swift */,
-				C9551A182C685DE900F2E072 /* NewExpression.swift */,
 				C9551A1F2C6930E100F2E072 /* AllEmotions.swift */,
 			);
 			path = "Home Views";
@@ -140,8 +138,10 @@
 		C9551A212C69A40100F2E072 /* Create Expression */ = {
 			isa = PBXGroup;
 			children = (
-				C9551A222C69B14800F2E072 /* ExpressionPrompt.swift */,
+				C9551A182C685DE900F2E072 /* NewExpression.swift */,
+				C9551A162C685DA200F2E072 /* PromptNavigationCard.swift */,
 				C9551A242C69B90B00F2E072 /* DrawExpression.swift */,
+				C9551A222C69B14800F2E072 /* ExpressionPrompt.swift */,
 				C9551A282C6BCBFF00F2E072 /* ExpressionForm.swift */,
 			);
 			path = "Create Expression";
