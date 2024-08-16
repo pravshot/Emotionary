@@ -12,8 +12,8 @@ struct NewExpression: View {
     
     var body: some View {
         GroupBox {
-            PromptNavigationCard(prompt: Prompt.random(), isTodaysExpression: isTodaysExpression)
-            PromptNavigationCard(prompt: Prompt.freestyleMessage, isTodaysExpression: isTodaysExpression)
+            PromptNavigationCard(expression: Expression(prompt: Prompt.random()), isTodaysExpression: isTodaysExpression)
+            PromptNavigationCard(expression: Expression(prompt: Prompt.freestyleMessage), isTodaysExpression: isTodaysExpression)
         } label: {
             Text(isTodaysExpression ? "Today's Expression" : "Create New Expression")
                 .font(.headline)

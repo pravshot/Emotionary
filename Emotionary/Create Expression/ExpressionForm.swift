@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct ExpressionForm: View {
-    @Environment(\.modelContext) private var modelContext
-    var drawing: UIImage
-    var prompt: String
+    @Binding var path: [NavPath]
+    @Binding var expression: Expression
     var isTodaysExpression: Bool
-    @State var selectedEmotion: Emotion? = nil
-    @State var title: String = ""
-    @State var description: String = ""
+    @Environment(\.modelContext) private var modelContext
+//    @State var selectedEmotion: Emotion? = nil
+//    @State var title: String = ""
+//    @State var description: String = ""
     
     var body: some View {
         VStack(alignment: .leading) {
             GroupBox {
-                Image(uiImage: drawing)
+                Image(uiImage: UIImage(data: expression.drawing) ?? UIImage())
                     .resizable()
                     .scaledToFit()
 //                    .frame(width: 200, height: 200)
@@ -35,37 +35,36 @@ struct ExpressionForm: View {
             HStack(spacing: 15) {
                 ForEach(Emotion.allCases) { emotion in
                     Button {
-                        selectedEmotion = emotion
+                        expression.emotion = emotion
                     } label: {
-                        Image(selectedEmotion == emotion ? emotion.icon : emotion.grayed_icon)
+                        Image(expression.emotion == emotion ? emotion.icon : emotion.grayed_icon)
                             .resizable()
                             .frame(width: 45, height: 45)
                     }
                 }
             }
             
-            TextField("Add Title", text: $title)
-            TextField("Add Description", text: $description)
+            TextField("Add Title", text: $expression.title)
+            TextField("Add Description", text: $expression.caption)
                 .font(.caption)
         }
         .padding(.horizontal)
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
-                ShareLink(item: Image(uiImage: drawing),
-                          preview: SharePreview(title.isEmpty ? prompt : title, image: Image(uiImage: drawing) ))
+                ShareLink(
+                    item: Image(uiImage: UIImage(data: expression.drawing) ?? UIImage()),
+                    preview: SharePreview(
+                        expression.title.isEmpty ? expression.prompt : expression.title,
+                        image: Image(uiImage: UIImage(data: expression.drawing) ?? UIImage())
+                    )
+                )
                 Button("Done") {
                     // save expression
-                    let newExpression = Expression(
-                        drawing: drawing.pngData() ?? Data(),
-                        emotion: selectedEmotion!,
-                        prompt: prompt,
-                        title: title,
-                        caption: description
-                    )
-                    modelContext.insert(newExpression)
+                    modelContext.insert(expression)
                     // return back to home view
+                    path.removeAll()
                 }
-                .disabled((selectedEmotion == nil) || title.isEmpty)
+                .disabled((expression.emotion == nil) || expression.title.isEmpty)
             }
         }
         .navigationTitle("New Expression")
@@ -73,5 +72,12 @@ struct ExpressionForm: View {
 }
 
 #Preview {
-    ExpressionForm(drawing: UIImage(systemName: "flame")!, prompt: Prompt.random(), isTodaysExpression: false)
+    struct Preview: View {
+        @State var path: [NavPath] = []
+        @State var expression = Expression()
+        var body: some View {
+            ExpressionForm(path: $path, expression: $expression, isTodaysExpression: true)
+        }
+    }
+    return Preview()
 }

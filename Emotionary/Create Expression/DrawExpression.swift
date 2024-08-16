@@ -9,7 +9,8 @@ import SwiftUI
 import PencilKit
 
 struct DrawExpression: View {
-    @State var prompt: String
+    @Binding var path: [NavPath]
+    @Binding var expression: Expression
     var isTodaysExpression: Bool
     @State var refreshView = false
     
@@ -21,14 +22,17 @@ struct DrawExpression: View {
 
     var body: some View {
         VStack {
-            ExpressionPrompt(prompt: $prompt)
+            ExpressionPrompt(prompt: $expression.prompt)
                 .padding()
                 .id(refreshView)
             CanvasView(canvas: $canvas, 
                        color: $color,
                        drawingTool: $drawingTool,
                        isDrawing: $isDrawing,
-                       onChange: {refreshView.toggle()}
+                       onChange: {
+                            refreshView.toggle()
+                            expression.drawing = getUIImage(canvas).pngData() ?? Data()
+                        }
             )
                 .toolbar {
                     ToolbarItemGroup(placement: .bottomBar) {
@@ -69,8 +73,8 @@ struct DrawExpression: View {
         }
         .toolbar {
             ToolbarItemGroup {
-                NavigationLink("Next") {
-                    ExpressionForm(drawing: getUIImage(canvas), prompt: prompt, isTodaysExpression: isTodaysExpression)
+                NavigationLink(value: NavPath.ExpressionForm) {
+                    Text("Next")
                 }
                 .disabled(isCanvasEmpty(canvas))
             }
@@ -121,7 +125,7 @@ struct CanvasView: UIViewRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-      Coordinator(canvasView: $canvas, onChange: onChange)
+        Coordinator(canvasView: $canvas, onChange: onChange)
     }
 }
 
@@ -157,5 +161,12 @@ extension UIScreen {
 }
 
 #Preview {
-    DrawExpression(prompt: Prompt.random(), isTodaysExpression: true)
+    struct Preview: View {
+        @State var path: [NavPath] = []
+        @State var expression = Expression()
+        var body: some View {
+            DrawExpression(path: $path, expression: $expression, isTodaysExpression: true)
+        }
+    }
+    return Preview()
 }

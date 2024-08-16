@@ -8,34 +8,42 @@
 import SwiftUI
 
 struct PromptNavigationCard: View {
-    @State var prompt: String
+    @State var navPath: [NavPath] = []
+    @State var expression: Expression
+    
     var isTodaysExpression: Bool
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navPath) {
             GroupBox {
                 HStack {
-                    Text(prompt)
+                    Text(expression.prompt)
                         .font(.subheadline)
                         .foregroundStyle(.gray)
                         .fixedSize(horizontal: false, vertical: true)
                         .frame(maxWidth: 250, alignment: .leading)
                     Spacer()
-                    if (prompt != Prompt.freestyleMessage) {
+                    if (expression.prompt != Prompt.freestyleMessage) {
                         Button {
-                            prompt = Prompt.random(exclude: prompt)
+                            expression.prompt = Prompt.random(exclude: expression.prompt)
                         } label: {
                             Image(systemName: "shuffle.circle.fill")
                                 .resizable()
                                 .frame(width: 30, height: 30)
                         }
                     }
-                    NavigationLink() {
-                        DrawExpression(prompt: prompt, isTodaysExpression: isTodaysExpression)
-                    } label: {
+                    NavigationLink(value: NavPath.DrawExpression) {
                         Image(systemName: "arrowshape.forward.circle.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
+                    }
+                    .navigationDestination(for: NavPath.self) {pathValue in
+                        switch pathValue {
+                            case NavPath.DrawExpression:
+                                DrawExpression(path: $navPath, expression: $expression, isTodaysExpression: isTodaysExpression)
+                            case NavPath.ExpressionForm:
+                                ExpressionForm(path: $navPath, expression: $expression, isTodaysExpression: isTodaysExpression)
+                        }
                     }
                 }
             }
@@ -44,6 +52,11 @@ struct PromptNavigationCard: View {
     }
 }
 
+enum NavPath: String {
+    case DrawExpression = "DrawExpression"
+    case ExpressionForm = "ExpressionForm"
+}
+
 #Preview {
-    PromptNavigationCard(prompt: Prompt.random(), isTodaysExpression: true)
+    return PromptNavigationCard(expression: Expression(), isTodaysExpression: true)
 }

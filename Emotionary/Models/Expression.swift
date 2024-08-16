@@ -14,14 +14,21 @@ final class Expression: Identifiable {
     let id = UUID()
     
     var title: String
-    var caption: String?
-    var emotion: Emotion
+    var caption: String
+    var emotion: Emotion?
     @Attribute(.externalStorage) var drawing : Data
     var prompt: String
     var date: Date
     var favorite: Bool
     
-    init(drawing: Data, emotion: Emotion, prompt: String, title: String, caption: String?, date: Date = Date(), favorite: Bool = false) {
+    init(drawing: Data = Data(), 
+         emotion: Emotion? = nil,
+         prompt: String = Prompt.random(),
+         title: String = "",
+         caption: String = "",
+         date: Date = Date(),
+         favorite: Bool = false)
+    {
         self.drawing = drawing
         self.emotion = emotion
         self.prompt = prompt
