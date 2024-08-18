@@ -26,7 +26,9 @@
 		C9551A232C69B14800F2E072 /* ExpressionPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A222C69B14800F2E072 /* ExpressionPrompt.swift */; };
 		C9551A252C69B90C00F2E072 /* DrawExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A242C69B90B00F2E072 /* DrawExpression.swift */; };
 		C9551A292C6BCC0000F2E072 /* ExpressionForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A282C6BCBFF00F2E072 /* ExpressionForm.swift */; };
-		C9551A2B2C6D633A00F2E072 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A2A2C6D633900F2E072 /* test.swift */; };
+		C9551A2D2C702B5500F2E072 /* ExpressionGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A2C2C702B5500F2E072 /* ExpressionGridItem.swift */; };
+		C9551A2F2C7123EC00F2E072 /* ExpressionFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A2E2C7123EC00F2E072 /* ExpressionFeedItem.swift */; };
+		C9551A312C71248700F2E072 /* ExpressionFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A302C71248700F2E072 /* ExpressionFeed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +52,9 @@
 		C9551A222C69B14800F2E072 /* ExpressionPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionPrompt.swift; sourceTree = "<group>"; };
 		C9551A242C69B90B00F2E072 /* DrawExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawExpression.swift; sourceTree = "<group>"; };
 		C9551A282C6BCBFF00F2E072 /* ExpressionForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionForm.swift; sourceTree = "<group>"; };
-		C9551A2A2C6D633900F2E072 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		C9551A2C2C702B5500F2E072 /* ExpressionGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionGridItem.swift; sourceTree = "<group>"; };
+		C9551A2E2C7123EC00F2E072 /* ExpressionFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionFeedItem.swift; sourceTree = "<group>"; };
+		C9551A302C71248700F2E072 /* ExpressionFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionFeed.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +99,6 @@
 				C95519FC2C67CFA700F2E072 /* Item.swift */,
 				C95519FE2C67CFA900F2E072 /* Assets.xcassets */,
 				C9551A002C67CFA900F2E072 /* Preview Content */,
-				C9551A2A2C6D633900F2E072 /* test.swift */,
 			);
 			path = Emotionary;
 			sourceTree = "<group>";
@@ -131,6 +134,9 @@
 		C9551A1A2C692DBB00F2E072 /* Gallery Views */ = {
 			isa = PBXGroup;
 			children = (
+				C9551A2C2C702B5500F2E072 /* ExpressionGridItem.swift */,
+				C9551A2E2C7123EC00F2E072 /* ExpressionFeedItem.swift */,
+				C9551A302C71248700F2E072 /* ExpressionFeed.swift */,
 			);
 			path = "Gallery Views";
 			sourceTree = "<group>";
@@ -223,13 +229,15 @@
 				C9551A192C685DE900F2E072 /* NewExpression.swift in Sources */,
 				C9551A1E2C69300200F2E072 /* GalleryView.swift in Sources */,
 				C9551A0C2C67E68000F2E072 /* Emotion.swift in Sources */,
-				C9551A2B2C6D633A00F2E072 /* test.swift in Sources */,
 				C9551A292C6BCC0000F2E072 /* ExpressionForm.swift in Sources */,
+				C9551A2D2C702B5500F2E072 /* ExpressionGridItem.swift in Sources */,
 				C95519FD2C67CFA700F2E072 /* Item.swift in Sources */,
 				C9551A232C69B14800F2E072 /* ExpressionPrompt.swift in Sources */,
 				C9551A172C685DA200F2E072 /* PromptNavigationCard.swift in Sources */,
 				C9551A152C6822AC00F2E072 /* MenuBar.swift in Sources */,
 				C95519F92C67CFA700F2E072 /* EmotionaryApp.swift in Sources */,
+				C9551A312C71248700F2E072 /* ExpressionFeed.swift in Sources */,
+				C9551A2F2C7123EC00F2E072 /* ExpressionFeedItem.swift in Sources */,
 				C9551A202C6930E100F2E072 /* AllEmotions.swift in Sources */,
 				C9551A1C2C692DF100F2E072 /* HomeView.swift in Sources */,
 				C9551A252C69B90C00F2E072 /* DrawExpression.swift in Sources */,
