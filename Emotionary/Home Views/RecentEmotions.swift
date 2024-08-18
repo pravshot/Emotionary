@@ -6,9 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 import Charts
 
 struct RecentEmotions: View {
+    static var fetchDescriptor: FetchDescriptor<Expression> {
+        var descriptor = FetchDescriptor<Expression>(
+            sortBy: [SortDescriptor(\.date, order: .reverse)]
+        )
+        descriptor.fetchLimit = 6
+        return descriptor
+    }
+    @Query(RecentEmotions.fetchDescriptor) private var recentExpressions: [Expression]
     var emotions: [Emotion]
     
     var body: some View {

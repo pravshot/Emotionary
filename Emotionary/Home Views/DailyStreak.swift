@@ -6,10 +6,37 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct DailyStreak: View {
-    
-    var streak: Int
+    @Query(sort: \Expression.date, order: .reverse) private var expressions: [Expression]
+    var streak: Int {
+        if expressions.isEmpty {
+            return 0
+        }
+        let calendar = Calendar.current
+        if !calendar.isDateInToday(expressions[0].date) &&
+           !calendar.isDateInYesterday(expressions[0].date) {
+            return 0
+        }
+        var streak = 0
+        for i in 1..<expressions.count {
+            let prevDate = calendar.startOfDay(for: expressions[i-1].date)
+            let currDate = calendar.startOfDay(for: expressions[i].date)
+            // skip duplicate dates
+            if prevDate == currDate {
+                continue
+            }
+            // if currDate is one day before prevDate, increment streak
+            // else the streak is broken
+            if currDate == calendar.date(byAdding: .day, value: -1, to: prevDate) {
+                streak += 1
+            } else {
+                break
+            }
+        }
+        return streak
+    }
     
     var body: some View {
         GroupBox {
@@ -47,5 +74,5 @@ struct DailyStreak: View {
 }
 
 #Preview {
-    DailyStreak(streak: 40)
+    DailyStreak()
 }

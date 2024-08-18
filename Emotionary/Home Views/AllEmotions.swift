@@ -6,10 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 import Charts
 
 struct AllEmotions: View {
-    var emotionCounts: [Emotion: Int]
+    @Query private var expressions: [Expression]
+    var emotionCounts: [Emotion: Int] {
+        var counts: [Emotion: Int] = [:]
+        for expression in expressions {
+            counts[expression.emotion!, default: 0] += 1
+        }
+        return counts
+    }
     let barCornerRadius = 10.0
     
     var body: some View {
@@ -74,11 +82,5 @@ struct AllEmotions: View {
 }
 
 #Preview {
-    AllEmotions(emotionCounts: [
-        .sad: 3,
-        .upset: 5,
-        .neutral: 2,
-        .content: 1,
-        .happy: 5
-    ])
+    AllEmotions()
 }

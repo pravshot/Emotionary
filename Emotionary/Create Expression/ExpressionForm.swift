@@ -13,9 +13,6 @@ struct ExpressionForm: View {
     var isTodaysExpression: Bool
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode
-//    @State var selectedEmotion: Emotion? = nil
-//    @State var title: String = ""
-//    @State var description: String = ""
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -23,11 +20,10 @@ struct ExpressionForm: View {
                 Image(uiImage: expression.getUIImage())
                     .resizable()
                     .scaledToFit()
-//                    .frame(width: 200, height: 200)
             }
             
             Text("This expression makes me feel...")
-                .font(.headline)
+                .font(.title3)
                 .fontWeight(.bold)
             
             HStack(spacing: 15) {
@@ -43,8 +39,9 @@ struct ExpressionForm: View {
             }
             
             TextField("Add Title", text: $expression.title)
+                .font(.title)
             TextField("Add Description", text: $expression.caption)
-                .font(.caption)
+                .font(.callout)
         }
         .padding(.horizontal)
         .toolbar {
@@ -61,10 +58,10 @@ struct ExpressionForm: View {
             }
             ToolbarItemGroup(placement: .topBarTrailing) {
                 ShareLink(
-                    item: Image(uiImage: UIImage(data: expression.drawing) ?? UIImage()),
+                    item: Image(uiImage: expression.getUIImage()),
                     preview: SharePreview(
                         expression.title.isEmpty ? expression.prompt : expression.title,
-                        image: Image(uiImage: UIImage(data: expression.drawing) ?? UIImage())
+                        image: Image(uiImage: expression.getUIImage())
                     )
                 )
                 Button("Done") {

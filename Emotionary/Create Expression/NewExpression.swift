@@ -6,9 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct NewExpression: View {
-    var isTodaysExpression: Bool
+    static var fetchDescriptor: FetchDescriptor<Expression> {
+        var descriptor = FetchDescriptor<Expression>(
+            sortBy: [SortDescriptor(\.date, order: .reverse)]
+        )
+        descriptor.fetchLimit = 1
+        return descriptor
+    }
+    @Query(NewExpression.fetchDescriptor) private var lastExpression: [Expression]
+    var isTodaysExpression: Bool {
+        return (lastExpression.isEmpty || !Calendar.current.isDateInToday(lastExpression[0].date))
+    }
     
     var body: some View {
         GroupBox {
@@ -23,5 +34,5 @@ struct NewExpression: View {
 }
 
 #Preview {
-    NewExpression(isTodaysExpression: true)
+    NewExpression()
 }
