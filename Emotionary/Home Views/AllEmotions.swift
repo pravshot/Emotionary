@@ -61,14 +61,14 @@ struct AllEmotions: View {
                         AxisGridLine()
                     }
                 }
-                .frame(minHeight: 200, maxHeight: 225)
+                .frame(height: 150)
                 
                 HStack {
                     ForEach(Emotion.allCases) { emotion in
                         Spacer()
                         Image(emotion.icon)
                             .resizable()
-                            .frame(width: 40, height: 40)
+                            .frame(width: 32, height: 32)
                         Spacer()
                     }
                 }

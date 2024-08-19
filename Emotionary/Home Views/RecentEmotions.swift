@@ -36,7 +36,7 @@ struct RecentEmotions: View {
                     .symbol {
                         Image(emotions[index].icon)
                             .resizable()
-                            .frame(width: 40, height: 40)
+                            .frame(width: 32, height: 32)
                     }
                     .foregroundStyle(.accent)
                 }
@@ -47,7 +47,7 @@ struct RecentEmotions: View {
                     AxisGridLine()
                 }
             }
-            .frame(minHeight: 150, maxHeight: 200)
+            .frame(height: 180)
             .padding(.horizontal)
             
         } label: {
