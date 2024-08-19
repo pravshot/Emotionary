@@ -14,11 +14,13 @@ struct RecentEmotions: View {
         var descriptor = FetchDescriptor<Expression>(
             sortBy: [SortDescriptor(\.date, order: .reverse)]
         )
-        descriptor.fetchLimit = 6
+        descriptor.fetchLimit = 5
         return descriptor
     }
     @Query(RecentEmotions.fetchDescriptor) private var recentExpressions: [Expression]
-    var emotions: [Emotion]
+    var emotions: [Emotion] {
+        return recentExpressions.reversed().map({ $0.emotion! })
+    }
     
     var body: some View {
         GroupBox {
@@ -38,15 +40,30 @@ struct RecentEmotions: View {
                             .resizable()
                             .frame(width: 32, height: 32)
                     }
-                    .foregroundStyle(.accent)
                 }
             }
-            .chartXAxis(.hidden)
+            .overlay {
+                if emotions.isEmpty {
+                    Text("No data")
+                        .font(.title2)
+                        .foregroundStyle(.gray)
+                }
+            }
+            .chartXAxis {
+                if !emotions.isEmpty {
+                    AxisMarks(values: .automatic(desiredCount: 4)) {
+                        AxisGridLine()
+                    }
+                }
+            }
             .chartYAxis {
-                AxisMarks() {
-                    AxisGridLine()
+                if !emotions.isEmpty {
+                    AxisMarks(values: .automatic(desiredCount: 5)) {
+                        AxisGridLine()
+                    }
                 }
             }
+            .chartYScale(domain: 0.5...5.5)
             .frame(height: 180)
             .padding(.horizontal)
             
@@ -59,5 +76,5 @@ struct RecentEmotions: View {
 
 
 #Preview {
-    RecentEmotions(emotions: [.upset, .content, .neutral, .happy, .sad])
+    RecentEmotions()
 }

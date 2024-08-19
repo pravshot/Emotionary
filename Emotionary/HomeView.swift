@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    var emotions: [Emotion] = [.upset, .content, .neutral, .happy, .sad]
     
     var body: some View {
         ScrollView {
@@ -20,7 +19,7 @@ struct HomeView: View {
                     .padding(.top)
                 NewExpression()
                 DailyStreak()
-                RecentEmotions(emotions: emotions)
+                RecentEmotions()
                 AllEmotions()
             }
             .frame(height: nil)
