@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var activeScreen: Screen = .home
-    
     var emotions: [Emotion] = [.upset, .content, .neutral, .happy, .sad]
     
     var body: some View {

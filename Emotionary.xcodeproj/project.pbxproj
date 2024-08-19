@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C95519F92C67CFA700F2E072 /* EmotionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95519F82C67CFA700F2E072 /* EmotionaryApp.swift */; };
 		C95519FB2C67CFA700F2E072 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95519FA2C67CFA700F2E072 /* ContentView.swift */; };
-		C95519FD2C67CFA700F2E072 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95519FC2C67CFA700F2E072 /* Item.swift */; };
 		C95519FF2C67CFA900F2E072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C95519FE2C67CFA900F2E072 /* Assets.xcassets */; };
 		C9551A022C67CFA900F2E072 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9551A012C67CFA900F2E072 /* Preview Assets.xcassets */; };
 		C9551A0A2C67E50C00F2E072 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A092C67E50C00F2E072 /* Expression.swift */; };
@@ -17,7 +16,6 @@
 		C9551A0E2C67EA7700F2E072 /* Prompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A0D2C67EA7700F2E072 /* Prompt.swift */; };
 		C9551A112C67F98800F2E072 /* DailyStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A102C67F98800F2E072 /* DailyStreak.swift */; };
 		C9551A132C67F9BE00F2E072 /* RecentEmotions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A122C67F9BE00F2E072 /* RecentEmotions.swift */; };
-		C9551A152C6822AC00F2E072 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A142C6822AC00F2E072 /* MenuBar.swift */; };
 		C9551A172C685DA200F2E072 /* PromptNavigationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A162C685DA200F2E072 /* PromptNavigationCard.swift */; };
 		C9551A192C685DE900F2E072 /* NewExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A182C685DE900F2E072 /* NewExpression.swift */; };
 		C9551A1C2C692DF100F2E072 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A1B2C692DF100F2E072 /* HomeView.swift */; };
@@ -35,7 +33,6 @@
 		C95519F52C67CFA700F2E072 /* Emotionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emotionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95519F82C67CFA700F2E072 /* EmotionaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionaryApp.swift; sourceTree = "<group>"; };
 		C95519FA2C67CFA700F2E072 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		C95519FC2C67CFA700F2E072 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C95519FE2C67CFA900F2E072 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9551A012C67CFA900F2E072 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C9551A092C67E50C00F2E072 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
@@ -43,7 +40,6 @@
 		C9551A0D2C67EA7700F2E072 /* Prompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompt.swift; sourceTree = "<group>"; };
 		C9551A102C67F98800F2E072 /* DailyStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStreak.swift; sourceTree = "<group>"; };
 		C9551A122C67F9BE00F2E072 /* RecentEmotions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentEmotions.swift; sourceTree = "<group>"; };
-		C9551A142C6822AC00F2E072 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		C9551A162C685DA200F2E072 /* PromptNavigationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptNavigationCard.swift; sourceTree = "<group>"; };
 		C9551A182C685DE900F2E072 /* NewExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpression.swift; sourceTree = "<group>"; };
 		C9551A1B2C692DF100F2E072 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -95,8 +91,6 @@
 				C95519FA2C67CFA700F2E072 /* ContentView.swift */,
 				C9551A1B2C692DF100F2E072 /* HomeView.swift */,
 				C9551A1D2C69300200F2E072 /* GalleryView.swift */,
-				C9551A142C6822AC00F2E072 /* MenuBar.swift */,
-				C95519FC2C67CFA700F2E072 /* Item.swift */,
 				C95519FE2C67CFA900F2E072 /* Assets.xcassets */,
 				C9551A002C67CFA900F2E072 /* Preview Content */,
 			);
@@ -231,10 +225,8 @@
 				C9551A0C2C67E68000F2E072 /* Emotion.swift in Sources */,
 				C9551A292C6BCC0000F2E072 /* ExpressionForm.swift in Sources */,
 				C9551A2D2C702B5500F2E072 /* ExpressionGridItem.swift in Sources */,
-				C95519FD2C67CFA700F2E072 /* Item.swift in Sources */,
 				C9551A232C69B14800F2E072 /* ExpressionPrompt.swift in Sources */,
 				C9551A172C685DA200F2E072 /* PromptNavigationCard.swift in Sources */,
-				C9551A152C6822AC00F2E072 /* MenuBar.swift in Sources */,
 				C95519F92C67CFA700F2E072 /* EmotionaryApp.swift in Sources */,
 				C9551A312C71248700F2E072 /* ExpressionFeed.swift in Sources */,
 				C9551A2F2C7123EC00F2E072 /* ExpressionFeedItem.swift in Sources */,

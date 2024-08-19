@@ -12,41 +12,32 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Expression.date) private var expressions: [Expression]
 
-    @State var activeScreen: Screen = .home
-    
-    var emotions: [Emotion] = [.upset, .content, .neutral, .happy, .sad]
-    
+    @State var tab: Tab = .home
+
     var body: some View {
         NavigationStack {
             VStack {
-                if activeScreen == .home {
+                TabView(selection: $tab) {
                     HomeView()
-                } else {
+                        .tabItem {
+                            Image(systemName: "house")
+                            Text("Home")
+                        }
+                        .tag(Tab.home)
                     GalleryView()
+                        .tabItem {
+                            Image(systemName: "photo.on.rectangle")
+                            Text("Gallery")
+                        }
+                        .tag(Tab.gallery)
                 }
-                Spacer()
-                MenuBar(activeScreen: $activeScreen)
             }
         }
     }
 
-//    private func addItem() {
-//        withAnimation {
-//            let newItem = Item(timestamp: Date())
-//            modelContext.insert(newItem)
-//        }
-//    }
-//
-//    private func deleteItems(offsets: IndexSet) {
-//        withAnimation {
-//            for index in offsets {
-//                modelContext.delete(items[index])
-//            }
-//        }
-//    }
 }
 
-enum Screen {
+enum Tab {
     case home
     case gallery
 }
