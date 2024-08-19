@@ -19,7 +19,7 @@ struct DailyStreak: View {
            !calendar.isDateInYesterday(expressions[0].date) {
             return 0
         }
-        var streak = 0
+        var streak = 1
         for i in 1..<expressions.count {
             let prevDate = calendar.startOfDay(for: expressions[i-1].date)
             let currDate = calendar.startOfDay(for: expressions[i].date)
@@ -38,33 +38,47 @@ struct DailyStreak: View {
         return streak
     }
     
+    var streakColor: Color {
+        return streak > 0 ? Emotion.happy.color : Emotion.sad.color
+    }
+    var streakIcon: String {
+        return streak > 0 ? Emotion.happy.icon : Emotion.sad.icon
+    }
+    var streakShade: Color {
+        let redShade = Color(red: 1.0, green: 0.541, blue: 0.251)
+        let greenShade = Color(red: 0.659, green: 0.867, blue: 0.471)
+        return streak > 0 ? greenShade : redShade
+    }
+    
     var body: some View {
         GroupBox {
-            HStack {
-                GroupBox {
-                    VStack {
-                        Image(streak > 0 ? Emotion.happy.icon : Emotion.sad.icon)
-                            .resizable()
-                            .scaledToFit()
-                        Spacer()
-                        Text(String(streak))
-                            .font(.title)
-                            .foregroundStyle(.white)
-                            .bold()
-                        Text(streak == 1 ? "day" : "days")
-                            .font(.subheadline)
-                            .foregroundStyle(.white)
-                    }
-                }
-                .backgroundStyle(Emotion.happy.color)
-                GroupBox {
-                    Image(systemName: "calendar")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundStyle(.gray)
-                }
+            ZStack {
+                Circle()
+                    .stroke(
+                        LinearGradient(colors: [streakColor, streakColor, streakShade],
+                                       startPoint: .topLeading,
+                                       endPoint: .bottomTrailing
+                                      ),
+                        lineWidth: 8
+                    )
+                    .frame(width: 140, height: 140)
+                Image(streakIcon)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 48, height: 48)
+                    .offset(y: -30)
+                
+                Text(String(streak))
+                    .font(.system(size: 38))
+                    .bold()
+                    .foregroundStyle(streakColor)
+                    .offset(y: 19)
+                
+                Text(streak == 1 ? "day" : "days")
+                    .font(.title3)
+                    .foregroundStyle(streakColor)
+                    .offset(y: 45)
             }
-            .frame(maxHeight: 150)
             
         } label: {
             Text("Daily Streak")
