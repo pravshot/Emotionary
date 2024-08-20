@@ -42,25 +42,17 @@ struct DailyStreak: View {
         return streak > 0 ? Emotion.happy.color : Emotion.sad.color
     }
     var streakIcon: String {
-        return streak > 0 ? Emotion.happy.icon : Emotion.sad.icon
+        return streak > 0 ? "streak-emotion" : "no-streak-emotion"
     }
-    var streakShade: Color {
-        let redShade = Color(red: 1.0, green: 0.541, blue: 0.251)
-        let greenShade = Color(red: 0.659, green: 0.867, blue: 0.471)
-        return streak > 0 ? greenShade : redShade
+    var streakCircle: String {
+        return streak > 0 ? "streak-circle" : "no-streak-circle"
     }
     
     var body: some View {
         GroupBox {
             ZStack {
-                Circle()
-                    .stroke(
-                        LinearGradient(colors: [streakColor, streakColor, streakShade],
-                                       startPoint: .topLeading,
-                                       endPoint: .bottomTrailing
-                                      ),
-                        lineWidth: 8
-                    )
+                Image(streakCircle)
+                    .resizable()
                     .frame(width: 140, height: 140)
                 Image(streakIcon)
                     .resizable()
