@@ -42,6 +42,7 @@ struct ExpressionForm: View {
                 .font(.title)
             TextField("Add Description", text: $expression.caption)
                 .font(.callout)
+            Spacer()
         }
         .padding(.horizontal)
         .toolbar {
