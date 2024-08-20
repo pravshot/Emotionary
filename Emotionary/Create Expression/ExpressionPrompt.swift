@@ -29,7 +29,7 @@ struct ExpressionPrompt: View {
                     Button {
                         prompt = Prompt.freestyleMessage
                     } label: {
-                        Image(systemName: "trash.circle.fill")
+                        Image(systemName: "xmark.circle.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
                     }
@@ -37,9 +37,12 @@ struct ExpressionPrompt: View {
                     Button {
                         prompt = Prompt.random()
                     } label: {
-                        Image(systemName: "plus.circle.fill")
-                            .resizable()
-                            .frame(width: 30, height: 30)
+                        Label("Prompt", systemImage: "plus")
+                            .font(.subheadline)
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 7)
+                            .background(Capsule(style: .circular))
                     }
                 }
             }
@@ -54,5 +57,5 @@ struct ExpressionPrompt: View {
             ExpressionPrompt(prompt: $prompt)
         }
     }
-    return PreviewView(prompt: Prompt.random())
+    return PreviewView(prompt: Prompt.freestyleMessage)
 }
