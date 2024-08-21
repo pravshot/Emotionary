@@ -16,12 +16,15 @@ struct ExpressionForm: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            GroupBox {
-                Image(uiImage: expression.getUIImage())
-                    .resizable()
-                    .scaledToFit()
+            HStack {
+                Spacer()
+                GroupBox {
+                    Image(uiImage: expression.getUIImage())
+                        .resizable()
+                        .scaledToFit()
+                }
+                Spacer()
             }
-            .frame(alignment: .center)
             
             Text("This expression makes me feel...")
                 .font(.title3)
@@ -43,6 +46,7 @@ struct ExpressionForm: View {
                 .font(.title)
             TextField("Add Description", text: $expression.caption)
                 .font(.callout)
+            
             Spacer()
         }
         .padding(.horizontal)
@@ -81,7 +85,7 @@ struct ExpressionForm: View {
 #Preview {
     struct Preview: View {
         @State var path: [NavPath] = []
-        var expression = Expression()
+        var expression = Expression(drawing: UIImage(systemName: "flame")?.pngData() ?? Data())
         var body: some View {
             ExpressionForm(path: $path, expression: expression, isTodaysExpression: true)
         }
