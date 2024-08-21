@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExpressionForm: View {
     @Binding var path: [NavPath]
-    @Binding var expression: Expression
+    @Bindable var expression: Expression
     var isTodaysExpression: Bool
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode
@@ -81,9 +81,9 @@ struct ExpressionForm: View {
 #Preview {
     struct Preview: View {
         @State var path: [NavPath] = []
-        @State var expression = Expression()
+        var expression = Expression()
         var body: some View {
-            ExpressionForm(path: $path, expression: $expression, isTodaysExpression: true)
+            ExpressionForm(path: $path, expression: expression, isTodaysExpression: true)
         }
     }
     return Preview()

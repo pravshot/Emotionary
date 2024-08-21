@@ -10,7 +10,7 @@ import PencilKit
 
 struct DrawExpression: View {
     @Binding var path: [NavPath]
-    @Binding var expression: Expression
+    var expression: Expression
     var isTodaysExpression: Bool
     
     @State var refreshView = false
@@ -177,9 +177,9 @@ extension UIScreen {
 #Preview {
     struct Preview: View {
         @State var path: [NavPath] = []
-        @State var expression = Expression()
+        var expression = Expression()
         var body: some View {
-            DrawExpression(path: $path, expression: $expression, isTodaysExpression: true)
+            DrawExpression(path: $path, expression: expression, isTodaysExpression: true)
         }
     }
     return Preview()

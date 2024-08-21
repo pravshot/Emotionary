@@ -21,16 +21,36 @@ struct NewExpression: View {
         return (lastExpression.isEmpty || !Calendar.current.isDateInToday(lastExpression[0].date))
     }
     
+    @State var navPath: [NavPath] = []
+    private var newExpression = Expression()
+    
     var body: some View {
-        GroupBox {
-            PromptNavigationCard(expression: Expression(prompt: Prompt.random()), isTodaysExpression: isTodaysExpression)
-            PromptNavigationCard(expression: Expression(prompt: Prompt.freestyleMessage), isTodaysExpression: isTodaysExpression)
-        } label: {
-            Text(isTodaysExpression ? "Today's Expression" : "Create New Expression")
-                .font(.headline)
+        NavigationStack(path: $navPath) {
+            GroupBox {
+                PromptNavigationCard(expression: newExpression, prompt: Prompt.random(), path: $navPath)
+                PromptNavigationCard(expression: newExpression, prompt: Prompt.freestyleMessage, path: $navPath)
+            } label: {
+                Text(isTodaysExpression ? "Today's Expression" : "Create New Expression")
+                    .font(.headline)
+            }
+            .navigationDestination(for: NavPath.self) {pathValue in
+                switch pathValue {
+                case NavPath.DrawExpression:
+                    DrawExpression(path: $navPath, expression: newExpression, isTodaysExpression: isTodaysExpression)
+                case NavPath.ExpressionForm:
+                    ExpressionForm(path: $navPath, expression: newExpression, isTodaysExpression: isTodaysExpression)
+                }
+            }
+            
         }
         
+        
     }
+}
+
+enum NavPath: String {
+    case DrawExpression = "DrawExpression"
+    case ExpressionForm = "ExpressionForm"
 }
 
 #Preview {
