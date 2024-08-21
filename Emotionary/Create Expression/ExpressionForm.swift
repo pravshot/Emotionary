@@ -18,17 +18,21 @@ struct ExpressionForm: View {
         VStack(alignment: .leading) {
             HStack {
                 Spacer()
-                GroupBox {
-                    Image(uiImage: expression.getUIImage())
-                        .resizable()
-                        .scaledToFit()
-                }
+                Image(uiImage: expression.getUIImage())
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .inset(by: 0.5)
+                            .stroke(.gray.opacity(0.1), lineWidth: 1)
+                            .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
+                    )
                 Spacer()
             }
             
-            Text("This expression makes me feel...")
+            Text(isTodaysExpression ? "Today's expression makes me feel..." : "This expression makes me feel...")
                 .font(.title3)
-                .fontWeight(.bold)
             
             HStack(spacing: 15) {
                 ForEach(Emotion.allCases) { emotion in
@@ -43,9 +47,12 @@ struct ExpressionForm: View {
             }
             
             TextField("Add Title", text: $expression.title)
-                .font(.title)
-            TextField("Add Description", text: $expression.caption)
+                .font(.title3)
+                .bold()
+            TextField("Add Description", text: $expression.caption, axis: .vertical)
                 .font(.callout)
+                .lineLimit(2, reservesSpace: false)
+                .padding(.bottom)
             
             Spacer()
         }
