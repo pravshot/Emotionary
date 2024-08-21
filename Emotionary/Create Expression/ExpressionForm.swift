@@ -21,6 +21,7 @@ struct ExpressionForm: View {
                     .resizable()
                     .scaledToFit()
             }
+            .frame(alignment: .center)
             
             Text("This expression makes me feel...")
                 .font(.title3)
