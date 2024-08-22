@@ -8,26 +8,28 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State var navPath: [NavPath] = []
     
     var body: some View {
-        ScrollView {
-            VStack {
-                Text("Welcome back")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top)
-                NewExpression()
-                DailyStreak()
-                RecentEmotions()
-                AllEmotions()
+        NavigationStack(path: $navPath) {
+            ScrollView {
+                VStack {
+                    Text("Welcome back")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top)
+                    NewExpression(path: $navPath)
+                    DailyStreak()
+                    RecentEmotions()
+                    AllEmotions()
+                }
+                .padding(.horizontal)
             }
-            .frame(height: nil)
-            .padding(.horizontal)
         }
     }
 }
 
 #Preview {
-    HomeView()
+    return HomeView()
 }

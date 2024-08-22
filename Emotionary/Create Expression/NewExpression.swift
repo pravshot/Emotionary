@@ -20,31 +20,33 @@ struct NewExpression: View {
     var isTodaysExpression: Bool {
         return (lastExpression.isEmpty || !Calendar.current.isDateInToday(lastExpression[0].date))
     }
+    var lastPrompt: String {
+        return !lastExpression.isEmpty ? lastExpression[0].prompt : ""
+    }
     
-    @State var navPath: [NavPath] = []
-    private var newExpression = Expression()
+    @Binding var path: [NavPath]
+    var newExpression = Expression()
     
     var body: some View {
-        NavigationStack(path: $navPath) {
-            GroupBox {
-                PromptNavigationCard(expression: newExpression, prompt: Prompt.random(), path: $navPath)
-                PromptNavigationCard(expression: newExpression, prompt: Prompt.freestyleMessage, path: $navPath)
-            } label: {
-                Text(isTodaysExpression ? "Today's Expression" : "Create New Expression")
-                    .font(.headline)
-            }
-            .navigationDestination(for: NavPath.self) {pathValue in
-                switch pathValue {
-                case NavPath.DrawExpression:
-                    DrawExpression(path: $navPath, expression: newExpression, isTodaysExpression: isTodaysExpression)
-                case NavPath.ExpressionForm:
-                    ExpressionForm(path: $navPath, expression: newExpression, isTodaysExpression: isTodaysExpression)
-                }
-            }
-            
+        GroupBox {
+            PromptNavigationCard(expression: newExpression, prompt: Prompt.random(exclude: lastPrompt), path: $path)
+                .id(lastPrompt)
+            PromptNavigationCard(expression: newExpression, prompt: Prompt.freestyleMessage, path: $path)
+        } label: {
+            Text(isTodaysExpression ? "Today's Expression" : "Create New Expression")
+                .font(.headline)
         }
-        
-        
+        .navigationDestination(for: NavPath.self) {pathValue in
+            switch pathValue {
+            case NavPath.DrawExpression:
+                DrawExpression(path: $path, expression: newExpression, isTodaysExpression: isTodaysExpression)
+                    .toolbar(.hidden, for: .tabBar)
+            case NavPath.ExpressionForm:
+                ExpressionForm(path: $path, expression: newExpression, isTodaysExpression: isTodaysExpression)
+                    .toolbar(.hidden, for: .tabBar)
+            }
+        }
+            
     }
 }
 
@@ -54,5 +56,11 @@ enum NavPath: String {
 }
 
 #Preview {
-    NewExpression()
+    struct Preview: View {
+        @State var navPath: [NavPath] = []
+        var body: some View {
+            NewExpression(path: $navPath)
+        }
+    }
+    return Preview()
 }

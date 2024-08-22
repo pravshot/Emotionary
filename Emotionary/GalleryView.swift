@@ -83,6 +83,8 @@ struct GalleryView: View {
                         { expression in
                             NavigationLink {
                                 ExpressionFeed(expressions: filteredExpressions, initialPosition: expression.id)
+                                    .toolbar(.hidden, for: .tabBar)
+                                    .navigationBarTitleDisplayMode(.inline)
                             } label: {
                                 ExpressionGridItem(expression: expression)
                             }
@@ -93,7 +95,9 @@ struct GalleryView: View {
                     .padding(.horizontal)
                 }
             }
+            
         }
+        
     }
 }
 

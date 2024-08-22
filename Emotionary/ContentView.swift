@@ -9,29 +9,23 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query(sort: \Expression.date) private var expressions: [Expression]
 
     @State var tab: Tab = .home
 
     var body: some View {
-        NavigationStack {
-            VStack {
-                TabView(selection: $tab) {
-                    HomeView()
-                        .tabItem {
-                            Image(systemName: "house")
-                            Text("Home")
-                        }
-                        .tag(Tab.home)
-                    GalleryView()
-                        .tabItem {
-                            Image(systemName: "photo.on.rectangle")
-                            Text("Gallery")
-                        }
-                        .tag(Tab.gallery)
+        TabView(selection: $tab) {
+            HomeView()
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("Home")
                 }
-            }
+                .tag(Tab.home)
+            GalleryView()
+                .tabItem {
+                    Image(systemName: "photo.on.rectangle")
+                    Text("Gallery")
+                }
+                .tag(Tab.gallery)
         }
     }
 
