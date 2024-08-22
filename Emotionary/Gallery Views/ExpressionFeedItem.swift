@@ -55,8 +55,10 @@ struct ExpressionFeedItem: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 25)
                 }
-                Text(expression.caption)
-                    .font(.callout)
+                if !expression.caption.isEmpty {
+                    Text(expression.caption)
+                        .font(.callout)
+                }
                 Text(formatDate(expression.date))
                     .font(.footnote)
                     .foregroundStyle(.gray)
