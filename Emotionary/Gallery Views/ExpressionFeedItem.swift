@@ -53,15 +53,35 @@ struct ExpressionFeedItem: View {
                     Image(expression.emotion!.icon)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(height: 28)
+                        .frame(height: 25)
                 }
                 Text(expression.caption)
                     .font(.callout)
-                Text(expression.date.formatted(date: .abbreviated, time: .omitted))
+                Text(formatDate(expression.date))
                     .font(.footnote)
                     .foregroundStyle(.gray)
             }
         }
+    }
+}
+
+func formatDate(_ date: Date) -> String {
+    let calendar = Calendar.current
+    // if year old
+    if date < calendar.date(byAdding: .year, value: -1, to: Date()) ?? Date.distantPast {
+        return date.formatted(date: .long, time: .omitted)
+    } 
+    // if week old
+    else if date < calendar.date(byAdding: .weekOfYear, value: -1, to: Date()) ?? Date.distantPast {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d"
+        return dateFormatter.string(from: date)
+    }
+    // recent
+    else {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        return  formatter.localizedString(for: date, relativeTo: Date())
     }
 }
 
@@ -72,7 +92,7 @@ struct ExpressionFeedItem: View {
             emotion: Emotion.happy,
             title: "Flame",
             caption: "What a hot day outside!",
-            date: Date(),
+            date: Date().addingTimeInterval(-1000000),
             favorite: false
         )
         
