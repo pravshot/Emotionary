@@ -22,6 +22,7 @@ struct ExpressionForm: View {
                     .resizable()
                     .scaledToFit()
                     .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .inset(by: 0.5)
@@ -51,6 +52,7 @@ struct ExpressionForm: View {
                 .bold()
             TextField("Add Description", text: $expression.caption, axis: .vertical)
                 .font(.callout)
+                .foregroundStyle(.gray)
                 .lineLimit(2, reservesSpace: false)
                 .padding(.bottom)
             

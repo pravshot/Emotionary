@@ -27,7 +27,7 @@ struct ExpressionFeedItem: View {
                 }
                 HStack(alignment: .top, spacing: 10) {
                     Text(expression.title)
-                        .font(.title)
+                        .font(.title2)
                         .bold()
                     Spacer()
                     ShareLink(
@@ -55,11 +55,11 @@ struct ExpressionFeedItem: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 28)
                 }
+                Text(expression.caption)
+                    .font(.callout)
                 Text(expression.date.formatted(date: .abbreviated, time: .omitted))
                     .font(.footnote)
                     .foregroundStyle(.gray)
-                Text(expression.caption)
-                    .font(.callout)
             }
         }
     }

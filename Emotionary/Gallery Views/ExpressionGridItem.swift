@@ -18,7 +18,8 @@ struct ExpressionGridItem: View {
             .padding()
             .overlay {
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(.gray, lineWidth: 1)
+                    .inset(by: 0.5)
+                    .stroke(.gray.opacity(0.2), lineWidth: 1)
             }
             .overlay(alignment: .bottomTrailing) {
                 Image(expression.emotion!.icon)
