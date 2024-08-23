@@ -21,9 +21,13 @@ struct ExpressionFeedItem: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 GroupBox {
-                    Image(uiImage: expression.getUIImage())
-                        .resizable()
-                        .scaledToFit()
+                    HStack {
+                        Spacer()
+                        Image(uiImage: expression.getUIImage())
+                            .resizable()
+                            .scaledToFit()
+                        Spacer()
+                    }
                 }
                 HStack(alignment: .top, spacing: 10) {
                     Text(expression.title)
@@ -49,6 +53,8 @@ struct ExpressionFeedItem: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 25)
+                            .id(expression.favorite)
+                            .transition(.scale.animation(.default))
                     }
                     Image(expression.emotion!.icon)
                         .resizable()
@@ -63,7 +69,10 @@ struct ExpressionFeedItem: View {
                     .font(.footnote)
                     .foregroundStyle(.gray)
             }
+            .frame(maxHeight: getMaxPostHeight())
+            
         }
+            
     }
 }
 
@@ -84,6 +93,16 @@ func formatDate(_ date: Date) -> String {
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .full
         return  formatter.localizedString(for: date, relativeTo: Date())
+    }
+}
+
+func getMaxPostHeight() -> CGFloat? {
+    let ui = UIScreen.current
+    let maxScale = 0.75
+    if (ui != nil) {
+        return ui!.bounds.height * maxScale
+    } else {
+        return nil
     }
 }
 
