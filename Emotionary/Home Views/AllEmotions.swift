@@ -69,7 +69,6 @@ struct AllEmotions: View {
                     }
                 }
             }
-            .padding(.horizontal)
         } label: {
             Text("All Emotions")
                 .font(.headline)

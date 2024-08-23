@@ -53,11 +53,11 @@ struct DailyStreak: View {
             ZStack {
                 Image(streakCircle)
                     .resizable()
-                    .frame(width: 140, height: 140)
+                    .frame(width: 150, height: 150)
                 Image(streakIcon)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 48, height: 48)
+                    .frame(width: 50, height: 50)
                     .offset(y: -30)
                 
                 Text(String(streak))

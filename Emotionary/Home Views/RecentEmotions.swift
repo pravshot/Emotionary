@@ -21,7 +21,7 @@ struct RecentEmotions: View {
     var emotions: [Emotion] {
         return recentExpressions.reversed().map({ $0.emotion! })
     }
-    
+
     var body: some View {
         GroupBox {
             Chart {
@@ -51,7 +51,7 @@ struct RecentEmotions: View {
             }
             .chartXAxis {
                 if !emotions.isEmpty {
-                    AxisMarks(values: .automatic(desiredCount: 4)) {
+                    AxisMarks(values: .automatic(desiredCount: 5)) {
                         AxisGridLine()
                     }
                 }
@@ -63,9 +63,9 @@ struct RecentEmotions: View {
                     }
                 }
             }
+            .chartXScale(range: .plotDimension(padding: 16))
             .chartYScale(domain: 0.5...5.5)
             .frame(height: 180)
-            .padding(.horizontal)
             
         } label: {
             Text("Recent Emotions")
@@ -76,5 +76,5 @@ struct RecentEmotions: View {
 
 
 #Preview {
-    RecentEmotions()
+    return RecentEmotions()
 }
