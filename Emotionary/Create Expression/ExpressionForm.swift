@@ -31,32 +31,39 @@ struct ExpressionForm: View {
                     )
                 Spacer()
             }
-            
-            Text(isTodaysExpression ? "Today's expression makes me feel..." : "This expression makes me feel...")
-                .font(.title3)
-            
-            HStack(spacing: 15) {
-                ForEach(Emotion.allCases) { emotion in
-                    Button {
-                        expression.emotion = emotion
-                    } label: {
-                        Image(expression.emotion == emotion ? emotion.icon : emotion.grayed_icon)
-                            .resizable()
-                            .frame(width: 45, height: 45)
-                            .id(expression.emotion == emotion)
-                            .transition(.opacity.animation(.default))
+            HStack {
+                Spacer()
+                VStack(alignment: .leading) {
+                    Text(isTodaysExpression ? "Today's expression makes me feel..." : "This expression makes me feel...")
+                        .font(.title3)
+                    
+                    HStack(spacing: 20) {
+                        ForEach(Emotion.allCases) { emotion in
+                            Button {
+                                expression.emotion = emotion
+                            } label: {
+                                Image(expression.emotion == emotion ? emotion.icon : emotion.grayed_icon)
+                                    .resizable()
+                                    .frame(width: 45, height: 45)
+                                    .id(expression.emotion == emotion)
+                                    .transition(.opacity.animation(.default))
+                            }
+                        }
                     }
+                    
+                    TextField("Add Title", text: $expression.title)
+                        .font(.title3)
+                        .bold()
+                    TextField("Add Description", text: $expression.caption, axis: .vertical)
+                        .font(.callout)
+                        .foregroundStyle(.gray)
+                        .lineLimit(2, reservesSpace: false)
+                        .padding(.bottom)
                 }
+                .frame(maxWidth: 315)
+                Spacer()
             }
             
-            TextField("Add Title", text: $expression.title)
-                .font(.title3)
-                .bold()
-            TextField("Add Description", text: $expression.caption, axis: .vertical)
-                .font(.callout)
-                .foregroundStyle(.gray)
-                .lineLimit(2, reservesSpace: false)
-                .padding(.bottom)
             
             Spacer()
         }

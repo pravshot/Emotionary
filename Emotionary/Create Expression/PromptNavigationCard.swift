@@ -20,7 +20,7 @@ struct PromptNavigationCard: View {
                     .font(.subheadline)
                     .foregroundStyle(.gray)
                     .fixedSize(horizontal: false, vertical: true)
-                    .frame(maxWidth: 250, alignment: .leading)
+//                    .frame(maxWidth: 250, alignment: .leading)
                 Spacer()
                 if (prompt != Prompt.freestyleMessage) {
                     Button {
