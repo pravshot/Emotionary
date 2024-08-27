@@ -12,13 +12,6 @@ struct GalleryView: View {
     @Query(sort: \Expression.date, order: .reverse) private var expressions: [Expression]
     @State var selectedViewOption: GalleryViewOption = .Recents
     @State var selectedEmotion: Emotion = .neutral
-    var filteredExpressions: [Expression] {
-        filter(
-            expressions: expressions,
-            view: selectedViewOption,
-            emotion: selectedEmotion
-        )
-    }
     @Environment(\.colorScheme) var colorScheme
     let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 3)
     
@@ -67,9 +60,13 @@ struct GalleryView: View {
                 .padding(.horizontal)
                 
                 ScrollView {
+                    let filteredExpressions = filter(
+                        expressions: expressions,
+                        view: selectedViewOption,
+                        emotion: selectedEmotion
+                    )
                     LazyVGrid(columns: columns, alignment: .center, spacing: 8) {
-                        ForEach(filteredExpressions)
-                        { expression in
+                        ForEach(filteredExpressions) { expression in
                             NavigationLink {
                                 ExpressionFeed(expressions: filteredExpressions, initialPosition: expression.id)
                                     .toolbar(.hidden, for: .tabBar)
