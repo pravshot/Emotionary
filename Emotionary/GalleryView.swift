@@ -44,39 +44,24 @@ struct GalleryView: View {
                     
                     if selectedViewOption == .Emotions {
                         // select emotion UI here
-                        GeometryReader {geometry in
-                            ScrollViewReader { proxy in
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack(spacing: 0) {
-                                        ForEach(Emotion.allCases) { emotion in
-                                            Image(selectedEmotion == emotion ? emotion.icon : emotion.grayed_icon)
-                                                .resizable()
-                                                .frame(width: selectedEmotion == emotion ? 55: 45,
-                                                       height: selectedEmotion == emotion ? 55: 45)
-                                                .gesture(TapGesture().onEnded({
-                                                    withAnimation(.smooth(duration: 0.2)) {
-                                                        selectedEmotion = emotion
-                                                        proxy.scrollTo(emotion.rawValue, anchor: .center)
-                                                    }
-                                                }))
-                                                .id(emotion.rawValue)
-                                                .transition(.opacity.animation(.default))
-                                                .padding(.horizontal)
-                                                .padding(.vertical, 2)
-                                        }
-                                    }
-                                    .frame(minWidth: geometry.size.width)
+                        HStack {
+                            ForEach(Emotion.allCases) { emotion in
+                                Button {
+                                    selectedEmotion = emotion
+                                } label: {
+                                    Image(selectedEmotion == emotion ? emotion.icon : emotion.grayed_icon)
+                                        .resizable()
+                                        .frame(width: selectedEmotion == emotion ? 55: 45,
+                                               height: selectedEmotion == emotion ? 55: 45)
+                                        .animation(.snappy, value: selectedEmotion)
                                 }
-                                .onAppear {
-                                    DispatchQueue.main.asyncAfter(deadline: .now()) {
-                                        withAnimation(.spring(duration: 0.5)) {
-                                            proxy.scrollTo(selectedEmotion, anchor: .center)
-                                        }
-                                    }
+                                if emotion.rawValue < 5 {
+                                    Spacer() // put spacers in between emotions
                                 }
                             }
-                            
                         }
+                        .padding(.vertical, 2)
+                        .frame(maxWidth: 550)
                     }
                 }
                 .padding(.horizontal)
