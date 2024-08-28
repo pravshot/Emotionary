@@ -26,6 +26,9 @@ struct ExpressionFeedItem: View {
                         Image(uiImage: expression.getUIImage())
                             .resizable()
                             .scaledToFit()
+                            .onTapGesture(count: 2, perform: {
+                                expression.favorite.toggle()
+                            })
                         Spacer()
                     }
                 }
