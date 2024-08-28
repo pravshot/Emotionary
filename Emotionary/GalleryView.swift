@@ -15,6 +15,17 @@ struct GalleryView: View {
     @Environment(\.colorScheme) var colorScheme
     let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 3)
     
+    var noResultsText: String {
+        switch selectedViewOption {
+        case .Recents:
+            "Create an expression to see them here."
+        case .Emotions:
+            "No expressions tagged with this emotion."
+        case .Favorites:
+            "Star an expression to add to your favorites."
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -59,27 +70,37 @@ struct GalleryView: View {
                 }
                 .padding(.horizontal)
                 
-                ScrollView {
-                    let filteredExpressions = filter(
-                        expressions: expressions,
-                        view: selectedViewOption,
-                        emotion: selectedEmotion
-                    )
-                    LazyVGrid(columns: columns, alignment: .center, spacing: 8) {
-                        ForEach(filteredExpressions) { expression in
-                            NavigationLink {
-                                ExpressionFeed(expressions: filteredExpressions, initialPosition: expression.id)
-                                    .toolbar(.hidden, for: .tabBar)
-                                    .navigationBarTitleDisplayMode(.inline)
-                            } label: {
-                                ExpressionGridItem(expression: expression)
+                let filteredExpressions = filter(
+                    expressions: expressions,
+                    view: selectedViewOption,
+                    emotion: selectedEmotion
+                )
+                if !filteredExpressions.isEmpty {
+                    ScrollView {
+                        LazyVGrid(columns: columns, alignment: .center, spacing: 8) {
+                            ForEach(filteredExpressions) { expression in
+                                NavigationLink {
+                                    ExpressionFeed(expressions: filteredExpressions, initialPosition: expression.id)
+                                        .toolbar(.hidden, for: .tabBar)
+                                        .navigationBarTitleDisplayMode(.inline)
+                                } label: {
+                                    ExpressionGridItem(expression: expression)
+                                }
                             }
                         }
+                        .padding(.bottom)
+                        .padding(.top, 8)
+                        .padding(.horizontal)
                     }
-                    .padding(.bottom)
-                    .padding(.top, 8)
-                    .padding(.horizontal)
                 }
+                else {
+                    Spacer()
+                    Text(noResultsText)
+                        .font(.callout)
+                        .foregroundStyle(.gray)
+                    Spacer()
+                }
+                
             }
             
         }
