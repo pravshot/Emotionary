@@ -20,7 +20,6 @@ struct PromptNavigationCard: View {
                     .font(.subheadline)
                     .foregroundStyle(.gray)
                     .fixedSize(horizontal: false, vertical: true)
-//                    .frame(maxWidth: 250, alignment: .leading)
                 Spacer()
                 if (prompt != Prompt.freestyleMessage) {
                     Button {
@@ -31,15 +30,14 @@ struct PromptNavigationCard: View {
                             .frame(width: 30, height: 30)
                     }
                 }
-                Button {
-                    expression.prompt = prompt
-                    path.append(.DrawExpression)
-                } label: {
-                    Image(systemName: "arrowshape.forward.circle.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                }
+                Image(systemName: "chevron.right")
+                    .foregroundStyle(.gray)
+                
             }
+        }
+        .onTapGesture {
+            expression.prompt = prompt
+            path.append(.DrawExpression)
         }
     }
 }
