@@ -18,7 +18,7 @@ struct GalleryView: View {
     var noResultsText: String {
         switch selectedViewOption {
         case .Recents:
-            "Create an expression to see them here."
+            "Create expressions to see them here."
         case .Emotions:
             "No expressions tagged with this emotion."
         case .Favorites:
