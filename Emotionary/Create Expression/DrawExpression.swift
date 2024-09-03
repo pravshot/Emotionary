@@ -11,7 +11,6 @@ import PencilKit
 struct DrawExpression: View {
     @Binding var path: [NavPath]
     var expression: Expression
-    var isTodaysExpression: Bool
     
     @State var refreshView = false
     @State var canvas = PKCanvasView()
@@ -146,7 +145,7 @@ struct DrawExpression: View {
                 .disabled(isCanvasEmpty(canvas))
             }
         }
-        .navigationTitle(isTodaysExpression ? "Today's Expression" : "New Expression")
+        .navigationTitle("New Expression")
         .navigationBarBackButtonHidden()
     }
 }
@@ -234,7 +233,7 @@ extension UIScreen {
         @State var path: [NavPath] = []
         var expression = Expression()
         var body: some View {
-            DrawExpression(path: $path, expression: expression, isTodaysExpression: true)
+            DrawExpression(path: $path, expression: expression)
         }
     }
     return Preview()

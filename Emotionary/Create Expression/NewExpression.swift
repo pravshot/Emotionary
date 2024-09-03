@@ -17,9 +17,6 @@ struct NewExpression: View {
         return descriptor
     }
     @Query(NewExpression.fetchDescriptor) private var lastExpression: [Expression]
-    var isTodaysExpression: Bool {
-        return (lastExpression.isEmpty || !Calendar.current.isDateInToday(lastExpression[0].date))
-    }
     var lastPrompt: String {
         return !lastExpression.isEmpty ? lastExpression[0].prompt : ""
     }
@@ -33,16 +30,16 @@ struct NewExpression: View {
                 .id(lastPrompt)
             PromptNavigationCard(expression: newExpression, prompt: Prompt.freestyleMessage, path: $path)
         } label: {
-            Text(isTodaysExpression ? "Today's Expression" : "Create New Expression")
+            Text("Create New Expression")
                 .font(.headline)
         }
         .navigationDestination(for: NavPath.self) {pathValue in
             switch pathValue {
             case NavPath.DrawExpression:
-                DrawExpression(path: $path, expression: newExpression, isTodaysExpression: isTodaysExpression)
+                DrawExpression(path: $path, expression: newExpression)
                     .toolbar(.hidden, for: .tabBar)
             case NavPath.ExpressionForm:
-                ExpressionForm(path: $path, expression: newExpression, isTodaysExpression: isTodaysExpression)
+                ExpressionForm(path: $path, expression: newExpression)
                     .toolbar(.hidden, for: .tabBar)
             }
         }

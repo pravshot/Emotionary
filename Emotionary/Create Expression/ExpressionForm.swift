@@ -10,7 +10,6 @@ import SwiftUI
 struct ExpressionForm: View {
     @Binding var path: [NavPath]
     @Bindable var expression: Expression
-    var isTodaysExpression: Bool
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode
     
@@ -32,10 +31,10 @@ struct ExpressionForm: View {
                 Spacer()
             }
             HStack {
-                Spacer()
+                if UIDevice.isIPad { Spacer() }
                 VStack(alignment: .leading) {
-                    Text(isTodaysExpression ? "Today's expression makes me feel..." : "This expression makes me feel...")
-                        .font(.title3)
+                    Text("This expression makes me feel...")
+                        .font(.title2)
                     
                     HStack(spacing: 20) {
                         ForEach(Emotion.allCases) { emotion in
@@ -95,7 +94,7 @@ struct ExpressionForm: View {
                 .disabled((expression.emotion == nil) || expression.title.isEmpty)
             }
         }
-        .navigationTitle(isTodaysExpression ? "Today's Expression" : "New Expression")
+        .navigationTitle("New Expression")
         .navigationBarBackButtonHidden()
     }
 }
@@ -105,7 +104,7 @@ struct ExpressionForm: View {
         @State var path: [NavPath] = []
         var expression = Expression(drawing: UIImage(systemName: "flame")?.pngData() ?? Data())
         var body: some View {
-            ExpressionForm(path: $path, expression: expression, isTodaysExpression: true)
+            ExpressionForm(path: $path, expression: expression)
         }
     }
     return Preview()
