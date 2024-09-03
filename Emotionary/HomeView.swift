@@ -44,19 +44,21 @@ struct iPadHomeView: View {
         GridItem(.flexible(), spacing: 16)
     ]
     var body: some View {
-        TabTitle(text: "Welcome back")
-        HStack(alignment: .top) {
-            VStack {
-                NewExpression(path: $navPath)
-                RecentEmotions()
+        VStack {
+            TabTitle(text: "Welcome back")
+            HStack(alignment: .top) {
+                VStack {
+                    NewExpression(path: $navPath)
+                    RecentEmotions()
+                }
+                VStack {
+                    DailyStreak()
+                    AllEmotions()
+                }
             }
-            VStack {
-                DailyStreak()
-                AllEmotions()
-            }
+            Spacer()
         }
         .padding(.horizontal)
-        Spacer()
     }
 }
 
