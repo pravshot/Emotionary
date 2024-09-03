@@ -72,7 +72,7 @@ struct ExpressionFeedItem: View {
                     .font(.footnote)
                     .foregroundStyle(.gray)
             }
-            .frame(maxHeight: getMaxPostHeight())
+            .frame(maxWidth: 600, maxHeight: getMaxPostHeight())
             
         }
             

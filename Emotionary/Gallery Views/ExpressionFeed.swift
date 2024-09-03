@@ -15,11 +15,13 @@ struct ExpressionFeed: View {
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
-                ForEach(expressions) {expression in
-                    ExpressionFeedItem(expression: expression)
-                        .padding(.vertical, 5)
-                        .padding(.horizontal)
-                        .id(expression.id)
+                LazyVStack {
+                    ForEach(expressions) {expression in
+                        ExpressionFeedItem(expression: expression)
+                            .padding(.vertical, 5)
+                            .padding(.horizontal)
+                            .id(expression.id)
+                    }
                 }
             }
             .onAppear {
