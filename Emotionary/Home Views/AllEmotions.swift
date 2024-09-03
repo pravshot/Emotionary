@@ -55,7 +55,8 @@ struct AllEmotions: View {
                         }
                     }
                 }
-                .frame(maxHeight: UIDevice.isIPhone ? 150 : 280)
+                .frame(minHeight: UIDevice.isIPhone ? 150 : 0,
+                       maxHeight: UIDevice.isIPhone ? 150 : 280)
                 
                 if !emotionCounts.isEmpty {
                     HStack {
