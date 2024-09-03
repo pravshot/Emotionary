@@ -15,17 +15,6 @@ struct GalleryView: View {
     @Environment(\.colorScheme) var colorScheme
     let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 3)
     
-    var noResultsText: String {
-        switch selectedViewOption {
-        case .Recents:
-            "Create expressions to see them here."
-        case .Emotions:
-            "No expressions tagged with this emotion."
-        case .Favorites:
-            "Star an expression to add to your favorites."
-        }
-    }
-    
     var body: some View {
         NavigationStack {
             VStack {
@@ -79,6 +68,7 @@ struct GalleryView: View {
                                     ExpressionFeed(expressions: filteredExpressions, initialPosition: expression.id)
                                         .toolbar(.hidden, for: .tabBar)
                                         .navigationBarTitleDisplayMode(.inline)
+                                        .navigationTitle(selectedViewOption.rawValue)
                                 } label: {
                                     ExpressionGridItem(expression: expression)
                                 }
@@ -91,9 +81,7 @@ struct GalleryView: View {
                 }
                 else {
                     Spacer()
-                    Text(noResultsText)
-                        .font(.callout)
-                        .foregroundStyle(.gray)
+                    noResultsDisplay(viewOption: selectedViewOption, emotion: selectedEmotion)
                     Spacer()
                 }
                 
@@ -115,10 +103,50 @@ func filter(expressions: [Expression], view: GalleryViewOption, emotion: Emotion
     }
 }
 
-enum GalleryViewOption {
-    case Recents
-    case Emotions
-    case Favorites
+struct noResultsDisplay: View {
+    var viewOption: GalleryViewOption
+    var emotion: Emotion
+    
+    var noResultsText: String {
+        switch viewOption {
+        case .Recents:
+            "Create expressions to see them here."
+        case .Emotions:
+            "No expressions tagged with this emotion."
+        case .Favorites:
+            "Star an expression to add to your favorites."
+        }
+    }
+    let imageWidth = 75.0
+    let imageHeight = 75.0
+    
+    var body: some View {
+        switch viewOption {
+        case .Recents:
+            Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+                .resizable()
+                .frame(maxWidth: imageWidth, maxHeight: imageHeight)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+        case .Emotions:
+            Image(emotion.icon)
+                .resizable()
+                .frame(maxWidth: imageWidth, maxHeight: imageHeight)
+        case .Favorites:
+            Image(systemName: "star.fill")
+                .resizable()
+                .frame(maxWidth: imageWidth, maxHeight: imageHeight)
+                .foregroundStyle(.accent)
+        }
+        Text(noResultsText)
+            .font(.callout)
+            .foregroundStyle(.gray)
+    }
+}
+
+enum GalleryViewOption: String {
+    case Recents = "Recents"
+    case Emotions = "Emotions"
+    case Favorites = "Favorites"
 }
 
 #Preview {
