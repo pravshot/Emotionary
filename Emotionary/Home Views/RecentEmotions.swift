@@ -65,7 +65,7 @@ struct RecentEmotions: View {
             }
             .chartXScale(range: .plotDimension(padding: 16))
             .chartYScale(domain: 0.5...5.5)
-            .frame(height: 180)
+            .frame(maxHeight: UIDevice.isIPhone ? 180 : 300)
             
         } label: {
             Text("Recent Emotions")

@@ -30,11 +30,7 @@ struct GalleryView: View {
         NavigationStack {
             VStack {
                 VStack {
-                    Text("Your expressions")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.top)
+                    TabTitle(text: "Your expressions")
                     
                     Picker("Gallery Options", selection: $selectedViewOption) {
                         Image(systemName: selectedViewOption == .Recents ? "clock.fill" : "clock")
