@@ -30,7 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C95519F52C67CFA700F2E072 /* Emotionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emotionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95519F52C67CFA700F2E072 /* Expressly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expressly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95519F82C67CFA700F2E072 /* EmotionaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionaryApp.swift; sourceTree = "<group>"; };
 		C95519FA2C67CFA700F2E072 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C95519FE2C67CFA900F2E072 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 		C95519EC2C67CFA700F2E072 = {
 			isa = PBXGroup;
 			children = (
-				C95519F72C67CFA700F2E072 /* Emotionary */,
+				C95519F72C67CFA700F2E072 /* Expressly */,
 				C95519F62C67CFA700F2E072 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,12 +75,12 @@
 		C95519F62C67CFA700F2E072 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C95519F52C67CFA700F2E072 /* Emotionary.app */,
+				C95519F52C67CFA700F2E072 /* Expressly.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C95519F72C67CFA700F2E072 /* Emotionary */ = {
+		C95519F72C67CFA700F2E072 /* Expressly */ = {
 			isa = PBXGroup;
 			children = (
 				C9551A212C69A40100F2E072 /* Create Expression */,
@@ -94,7 +94,7 @@
 				C95519FE2C67CFA900F2E072 /* Assets.xcassets */,
 				C9551A002C67CFA900F2E072 /* Preview Content */,
 			);
-			path = Emotionary;
+			path = Expressly;
 			sourceTree = "<group>";
 		};
 		C9551A002C67CFA900F2E072 /* Preview Content */ = {
@@ -150,9 +150,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C95519F42C67CFA700F2E072 /* Emotionary */ = {
+		C95519F42C67CFA700F2E072 /* Expressly */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C9551A052C67CFA900F2E072 /* Build configuration list for PBXNativeTarget "Emotionary" */;
+			buildConfigurationList = C9551A052C67CFA900F2E072 /* Build configuration list for PBXNativeTarget "Expressly" */;
 			buildPhases = (
 				C95519F12C67CFA700F2E072 /* Sources */,
 				C95519F22C67CFA700F2E072 /* Frameworks */,
@@ -162,9 +162,9 @@
 			);
 			dependencies = (
 			);
-			name = Emotionary;
+			name = Expressly;
 			productName = Emotionary;
-			productReference = C95519F52C67CFA700F2E072 /* Emotionary.app */;
+			productReference = C95519F52C67CFA700F2E072 /* Expressly.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -182,7 +182,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C95519F02C67CFA700F2E072 /* Build configuration list for PBXProject "Emotionary" */;
+			buildConfigurationList = C95519F02C67CFA700F2E072 /* Build configuration list for PBXProject "Expressly" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -195,7 +195,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C95519F42C67CFA700F2E072 /* Emotionary */,
+				C95519F42C67CFA700F2E072 /* Expressly */,
 			);
 		};
 /* End PBXProject section */
@@ -367,7 +367,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Emotionary/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Expressly/Preview Content\"";
 				DEVELOPMENT_TEAM = DJU6W6S9T6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -398,7 +398,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Emotionary/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Expressly/Preview Content\"";
 				DEVELOPMENT_TEAM = DJU6W6S9T6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -425,7 +425,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C95519F02C67CFA700F2E072 /* Build configuration list for PBXProject "Emotionary" */ = {
+		C95519F02C67CFA700F2E072 /* Build configuration list for PBXProject "Expressly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9551A032C67CFA900F2E072 /* Debug */,
@@ -434,7 +434,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C9551A052C67CFA900F2E072 /* Build configuration list for PBXNativeTarget "Emotionary" */ = {
+		C9551A052C67CFA900F2E072 /* Build configuration list for PBXNativeTarget "Expressly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9551A062C67CFA900F2E072 /* Debug */,
