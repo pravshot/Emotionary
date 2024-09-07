@@ -43,6 +43,8 @@ struct GalleryView: View {
                                         .frame(width: selectedEmotion == emotion ? 55: 45,
                                                height: selectedEmotion == emotion ? 55: 45)
                                         .animation(.snappy, value: selectedEmotion)
+                                        .id(selectedEmotion == emotion)
+                                        .transition(.opacity.animation(.snappy))
                                 }
                                 if emotion.rawValue < 5 {
                                     Spacer() // put spacers in between emotions
