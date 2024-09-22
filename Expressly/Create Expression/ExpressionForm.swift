@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExpressionForm: View {
     @Binding var path: [NavPath]
-    @Bindable var expression: Expression
+    @Binding var expression: Expression
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode
     
@@ -89,6 +89,7 @@ struct ExpressionForm: View {
                 )
                 Button("Done") {
                     modelContext.insert(expression) // save expression
+                    expression = Expression() // reset expression
                     path.removeAll() // return back to home view
                 }
                 .disabled((expression.emotion == nil) || expression.title.isEmpty)
@@ -102,9 +103,9 @@ struct ExpressionForm: View {
 #Preview {
     struct Preview: View {
         @State var path: [NavPath] = []
-        var expression = Expression(drawing: UIImage(systemName: "flame")?.pngData() ?? Data())
+        @State var expression = Expression(drawing: UIImage(systemName: "flame")?.pngData() ?? Data())
         var body: some View {
-            ExpressionForm(path: $path, expression: expression)
+            ExpressionForm(path: $path, expression: $expression)
         }
     }
     return Preview()
