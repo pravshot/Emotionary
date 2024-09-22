@@ -22,7 +22,7 @@ struct NewExpression: View {
     }
     
     @Binding var path: [NavPath]
-    var newExpression = Expression()
+    @State var newExpression = Expression()
     
     var body: some View {
         GroupBox {
@@ -39,7 +39,7 @@ struct NewExpression: View {
                 DrawExpression(path: $path, expression: newExpression)
                     .toolbar(.hidden, for: .tabBar)
             case NavPath.ExpressionForm:
-                ExpressionForm(path: $path, expression: newExpression)
+                ExpressionForm(path: $path, expression: $newExpression)
                     .toolbar(.hidden, for: .tabBar)
             }
         }
