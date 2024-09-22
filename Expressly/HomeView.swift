@@ -34,6 +34,7 @@ struct iPhoneHomeView: View {
             }
             .padding(.horizontal)
         }
+        .clipped()
     }
 }
 
