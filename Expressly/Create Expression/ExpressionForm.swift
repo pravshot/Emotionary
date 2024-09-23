@@ -13,6 +13,8 @@ struct ExpressionForm: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode
     
+    @FocusState private var isDescFocused: Bool
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -53,10 +55,19 @@ struct ExpressionForm: View {
                     TextField("Add Title", text: $expression.title)
                         .font(.title3)
                         .bold()
+                        .submitLabel(.done)
                     TextField("Add Description", text: $expression.caption, axis: .vertical)
                         .font(.callout)
                         .foregroundStyle(.gray)
                         .lineLimit(2, reservesSpace: false)
+                        .submitLabel(.done)
+                        .focused($isDescFocused)
+                        .onChange(of: expression.caption) {_, newValue in
+                            if newValue.last == "\n" {
+                                expression.caption.removeLast()
+                                isDescFocused = false
+                            }
+                        }
                         .padding(.bottom)
                 }
                 .frame(maxWidth: 315)
