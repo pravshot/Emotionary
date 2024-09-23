@@ -146,6 +146,7 @@ struct DrawExpression: View {
             }
         }
         .navigationTitle("New Expression")
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
     }
 }
