@@ -125,7 +125,7 @@ struct noResultsDisplay: View {
     var body: some View {
         switch viewOption {
         case .Recents:
-            Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+            Image("app-icon-image")
                 .resizable()
                 .frame(maxWidth: imageWidth, maxHeight: imageHeight)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
