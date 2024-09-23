@@ -16,14 +16,14 @@ struct ContentView: View {
         TabView(selection: $tab) {
             HomeView()
                 .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
+                    Label("Home", systemImage: "house")
+                        .environment(\.symbolVariants, tab == .home ? .fill : .none)
                 }
                 .tag(Tab.home)
             GalleryView()
                 .tabItem {
-                    Image(systemName: "photo.on.rectangle")
-                    Text("Gallery")
+                    Label("Gallery", systemImage: "photo.on.rectangle.angled")
+                        .environment(\.symbolVariants, tab == .gallery ? .fill : .none)
                 }
                 .tag(Tab.gallery)
         }
