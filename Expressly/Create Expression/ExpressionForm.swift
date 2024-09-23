@@ -96,6 +96,7 @@ struct ExpressionForm: View {
             }
         }
         .navigationTitle("New Expression")
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
     }
 }
