@@ -27,7 +27,7 @@ struct PromptNavigationCard: View {
                     } label: {
                         Image(systemName: "shuffle.circle.fill")
                             .resizable()
-                            .frame(width: 30, height: 30)
+                            .frame(width: 35, height: 35)
                     }
                 }
                 Image(systemName: "chevron.right")
