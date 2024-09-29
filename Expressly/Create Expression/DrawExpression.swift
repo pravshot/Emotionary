@@ -166,11 +166,14 @@ struct CanvasView: UIViewRepresentable {
     @Binding var paintbrushColor: Color
     @Binding var drawingTool: PKInkingTool.InkType
     @Binding var isDrawing: Bool
+    @Environment(\.colorScheme) var colorScheme
     
     let onChange: () -> Void
     
     var ink: PKInkingTool {
-        PKInkingTool(drawingTool, color: drawingTool == .pen ? UIColor(penColor) : UIColor(paintbrushColor))
+        let color = drawingTool == .pen ? UIColor(penColor) : UIColor(paintbrushColor)
+        let adjustedColor: UIColor = colorScheme == .dark ? PKInkingTool.convertColor(color, from: .light, to: .dark) : color
+        return PKInkingTool(drawingTool, color: adjustedColor)
     }
     
     let eraser = PKEraserTool(.bitmap)
