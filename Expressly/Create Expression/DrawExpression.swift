@@ -31,6 +31,7 @@ struct DrawExpression: View {
     let selectionAnimation: Animation = .snappy
     
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack {
@@ -45,87 +46,88 @@ struct DrawExpression: View {
                        onChange: { refreshView.toggle() }
             )
             .padding(.bottom, 10)
-                .toolbar {
-                    ToolbarItemGroup(placement: .bottomBar) {
-                        Spacer()
-                        HStack(spacing: 10) {
-                            // Undo Button
-                            Button {
-                                undoManager?.undo()
-                            } label: {
-                                Image(systemName: "arrow.uturn.backward")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: 20)
-                            }
-                            .disabled((undoManager != nil) && !undoManager!.canUndo)
-                            // Redo Button
-                            Button {
-                                undoManager?.redo()
-                            } label: {
-                                Image(systemName: "arrow.uturn.forward")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: 20)
-                            }
-                            .disabled((undoManager != nil) && !undoManager!.canRedo)
-                            // Pen
-                            Button {
-                                drawingTool = .pen
-                                isDrawing = true
-                                toolChanged.toggle()
-                            } label: {
-                                Image("pen-icon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: isPenSelected ? activeHeight : inactiveHeight)
-                                    .foregroundStyle(isPenSelected ? penColor : inactiveColor)
-                                    .animation(selectionAnimation, value: isPenSelected)
-                            }
-                            // Paintbrush
-                            Button {
-                                drawingTool = .marker
-                                isDrawing = true
-                                toolChanged.toggle()
-                            } label: {
-                                Image("paintbrush-icon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: isPaintbrushSelected ? activeHeight : inactiveHeight)
-                                    .foregroundStyle(isPaintbrushSelected ? paintbrushColor : inactiveColor)
-                                    .animation(selectionAnimation, value: toolChanged)
-                            }
-                            // Eraser
-                            Button {
-                                isDrawing = false
-                                toolChanged.toggle()
-                            } label: {
-                                Image("eraser-icon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: isEraserSelected ? activeHeight : inactiveHeight)
-                                    .foregroundStyle(isEraserSelected ? eraserColor : inactiveColor)
-                                    .animation(selectionAnimation, value: isEraserSelected)
-                            }
-                            // Color Selection
-                            ColorPicker("", selection: drawingTool == .pen ? $penColor : $paintbrushColor)
-                                .disabled(!isDrawing)
-                            
-                        }
-                        .padding(.horizontal)
-                        .padding(.vertical, 5)
-                        .overlay(
-                            Capsule()
-                                .inset(by: 0.5)
-                                .stroke(.gray.opacity(0.1), lineWidth: 1)
-                                .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
-                        )
-                        Spacer()
-                    }
-                }
-                .frame(height: nil)
+            .frame(height: nil)
         }
         .toolbar {
+            ToolbarItemGroup(placement: .bottomBar) {
+                Spacer()
+                HStack(spacing: 10) {
+                    // Undo Button
+                    Button {
+                        undoManager?.undo()
+                    } label: {
+                        Image(systemName: "arrow.uturn.backward")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 20)
+                    }
+                    .disabled((undoManager != nil) && !undoManager!.canUndo)
+                    // Redo Button
+                    Button {
+                        undoManager?.redo()
+                    } label: {
+                        Image(systemName: "arrow.uturn.forward")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 20)
+                    }
+                    .disabled((undoManager != nil) && !undoManager!.canRedo)
+                    // Pen
+                    Button {
+                        drawingTool = .pen
+                        isDrawing = true
+                        toolChanged.toggle()
+                    } label: {
+                        Image("pen-icon")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: isPenSelected ? activeHeight : inactiveHeight)
+                            .foregroundStyle(isPenSelected ? penColor : inactiveColor)
+                            .animation(selectionAnimation, value: isPenSelected)
+                    }
+                    // Paintbrush
+                    Button {
+                        drawingTool = .marker
+                        isDrawing = true
+                        toolChanged.toggle()
+                    } label: {
+                        Image("paintbrush-icon")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: isPaintbrushSelected ? activeHeight : inactiveHeight)
+                            .foregroundStyle(isPaintbrushSelected ? paintbrushColor : inactiveColor)
+                            .animation(selectionAnimation, value: toolChanged)
+                    }
+                    // Eraser
+                    Button {
+                        isDrawing = false
+                        toolChanged.toggle()
+                    } label: {
+                        Image("eraser-icon")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: isEraserSelected ? activeHeight : inactiveHeight)
+                            .foregroundStyle(isEraserSelected ? eraserColor : inactiveColor)
+                            .animation(selectionAnimation, value: isEraserSelected)
+                    }
+                    // Color Selection
+                    ColorPicker("", selection: drawingTool == .pen ? $penColor : $paintbrushColor)
+                        .disabled(!isDrawing)
+                    
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 5)
+                .background(
+                    Capsule()
+                        .fill(Color(colorScheme == .dark ? UIColor.secondarySystemGroupedBackground : UIColor.systemGroupedBackground))
+                        .overlay(
+                            Capsule()
+                                .stroke(.gray.opacity(0.1), lineWidth: 1)
+                        )
+                        .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
+                )
+                Spacer()
+            }
             // Go back to Home
             ToolbarItem(placement: .topBarLeading) {
                 Button {
