@@ -24,8 +24,8 @@ struct DrawExpression: View {
     var isPaintbrushSelected: Bool { drawingTool == .marker && isDrawing }
     var isEraserSelected: Bool { !isDrawing }
     @State var toolChanged = false
-    let activeHeight = 45.0
-    let inactiveHeight = 30.0
+    let activeHeight = 52.5
+    let inactiveHeight = 37.5
     let inactiveColor = Color.gray
     let eraserColor = Color(red: 1.0, green: 0.59, blue: 0.57)
     let selectionAnimation: Animation = .snappy
