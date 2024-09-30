@@ -43,11 +43,16 @@ struct ExpressionForm: View {
                             Button {
                                 expression.emotion = emotion
                             } label: {
-                                Image(expression.emotion == emotion ? emotion.icon : emotion.grayed_icon)
-                                    .resizable()
-                                    .frame(width: 45, height: 45)
-                                    .id(expression.emotion == emotion)
-                                    .transition(.opacity.animation(.default))
+                                ZStack {
+                                    Image(emotion.grayed_icon)
+                                        .resizable()
+                                        .frame(width: 45, height: 45)
+                                    Image(emotion.icon)
+                                        .resizable()
+                                        .frame(width: 45, height: 45)
+                                        .opacity(expression.emotion == emotion ? 1 : 0)
+                                        .animation(.default, value: expression.emotion == emotion)
+                                }
                             }
                         }
                     }
