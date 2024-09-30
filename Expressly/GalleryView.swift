@@ -36,15 +36,21 @@ struct GalleryView: View {
                         HStack {
                             ForEach(Emotion.allCases) { emotion in
                                 Button {
-                                    selectedEmotion = emotion
+                                    withAnimation(.default) {
+                                        selectedEmotion = emotion
+                                    }
                                 } label: {
-                                    Image(selectedEmotion == emotion ? emotion.icon : emotion.grayed_icon)
-                                        .resizable()
-                                        .frame(width: selectedEmotion == emotion ? 55: 45,
-                                               height: selectedEmotion == emotion ? 55: 45)
-                                        .animation(.snappy, value: selectedEmotion)
-                                        .id(selectedEmotion == emotion)
-                                        .transition(.opacity.animation(.snappy))
+                                    ZStack {
+                                        Image(emotion.grayed_icon)
+                                            .resizable()
+                                            .frame(width: selectedEmotion == emotion ? 55 : 45,
+                                                    height: selectedEmotion == emotion ? 55 : 45)
+                                        Image(emotion.icon)
+                                            .resizable()
+                                            .frame(width: selectedEmotion == emotion ? 55 : 45,
+                                                    height: selectedEmotion == emotion ? 55 : 45)
+                                            .opacity(selectedEmotion == emotion ? 1 : 0)
+                                    }
                                 }
                                 if emotion.rawValue < 5 {
                                     Spacer() // put spacers in between emotions
