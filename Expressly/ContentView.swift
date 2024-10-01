@@ -53,8 +53,8 @@ func setupNotification() {
 func scheduleDailyNotification() {
     // Notification Content
     let content = UNMutableNotificationContent()
-    content.title = "Create an Expression"
-    content.body = "Take some time to reflect and make an expression!"
+    content.title = "Expressly"
+    content.body = notificationMessages.randomElement()!
     content.sound = UNNotificationSound.default
     // Notification Timing
     let dateComponents = DateComponents(hour: 20, minute: 0) // 8 pm daily
@@ -71,6 +71,15 @@ func scheduleDailyNotification() {
 func cancelDailyNotification() {
     UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["DailyReminder"])
 }
+
+private let notificationMessages =
+[
+    "Take some time to reflect and make an expression.",
+    "Sketch your thoughts and reflect on your day.",
+    "Unwind with a daily drawing session.",
+    "Take a few moments to express yourself.",
+    "Capture your thoughts with a quick drawing."
+]
 
 enum Tab {
     case home
