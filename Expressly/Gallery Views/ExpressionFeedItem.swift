@@ -95,7 +95,7 @@ func formatDate(_ date: Date) -> String {
     else {
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .full
-        return  formatter.localizedString(for: date, relativeTo: Date())
+        return formatter.localizedString(for: date, relativeTo: Date())
     }
 }
 
