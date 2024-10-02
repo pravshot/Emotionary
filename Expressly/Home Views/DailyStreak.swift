@@ -125,20 +125,20 @@ func getRecentStatuses(_ expressions: [Expression]) -> [(String, StreakStatus)] 
     // initialize with missed/pending
     let today = Date()
     let lastIndex = min(
-        7,
+        6,
         calendar.dateComponents(
             [.day],
             from: expressions.count > 0 ? expressions[expressions.count - 1].date : Date(),
             to: today
-        ).day ?? 7
+        ).day ?? 6
     )
-    for i in 0..<lastIndex {
+    for i in 0...lastIndex {
         let prevDate = calendar.date(byAdding: .day, value: -i, to: today) ?? Date()
         dateStreakMap[calendar.startOfDay(for: prevDate)] = (prevDate == today) ? .Pending : .Missed
     }
     // fill in completed
     for expression in expressions {
-        if expression.date < calendar.date(byAdding: .day, value: -7, to: today) ?? Date.distantPast {
+        if expression.date < calendar.date(byAdding: .day, value: -6, to: today) ?? Date.distantPast {
             break
         }
         let key = calendar.startOfDay(for: expression.date)
