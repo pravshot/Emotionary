@@ -27,6 +27,19 @@ struct ExpressionGridItem: View {
                     .frame(width: 32, height: 32)
                     .offset(x: -2, y: -2)
             }
+            .contextMenu {
+                ShareLink(
+                    item: Image(uiImage: expression.getUIImage()),
+                    subject: Text(expression.title),
+                    message: Text(expression.caption),
+                    preview: SharePreview(
+                        expression.title,
+                        image: Image(uiImage: expression.getUIImage())
+                    )
+                ) {
+                    Label("Share", systemImage: "square.and.arrow.up")
+                }
+            }
     }
 }
 
