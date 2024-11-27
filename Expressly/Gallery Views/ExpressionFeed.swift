@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ExpressionFeed: View {
+    @Query private var allExpressions: [Expression]
     var expressions: [Expression]
     var initialPosition: PersistentIdentifier
     
@@ -16,12 +17,15 @@ struct ExpressionFeed: View {
         ScrollViewReader { proxy in
             ScrollView {
                 LazyVStack {
-                    ForEach(expressions) {expression in
+                    ForEach(expressions.filter{allExpressions.contains($0)}) {expression in
                         ExpressionFeedItem(expression: expression)
                             .padding(.vertical, 5)
                             .padding(.horizontal)
                             .id(expression.id)
+                            .transition(.opacity.combined(with: .slide))
+                            .animation(.default, value: allExpressions)
                     }
+                    .animation(.default, value: allExpressions)
                 }
             }
             .onAppear {

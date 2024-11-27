@@ -9,16 +9,37 @@ import SwiftUI
 
 struct ExpressionFeedItem: View {
     var expression: Expression
+    @Environment(\.modelContext) private var modelContext
+    @State private var isPresentingConfirm: Bool = false
     
     var body: some View {
         GroupBox {
             VStack(alignment: .leading) {
                 GroupBox {
-                    Text(expression.prompt)
-                        .font(.subheadline)
-                        .foregroundStyle(.gray)
-                        .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    HStack {
+                        Text(expression.prompt)
+                            .font(.subheadline)
+                            .foregroundStyle(.gray)
+                            .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                        Spacer()
+                        Menu {
+                            Button(role: .destructive) {
+                                isPresentingConfirm = true
+                            } label: {
+                                Label("Delete", systemImage: "trash.fill")
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                                .foregroundStyle(.accent)
+                        }
+                    }
+                    .confirmationDialog("Are you sure you want to delete this expression?", isPresented: $isPresentingConfirm) {
+                        Button("Delete Expression", role: .destructive) {
+                             modelContext.delete(expression)
+                        }
+                    } message: {
+                        Text("You cannot undo this action")
+                    }
                 }
                 GroupBox {
                     HStack {
@@ -64,7 +85,7 @@ struct ExpressionFeedItem: View {
                     Image(expression.emotion!.icon)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(height: 25)
+                        .frame(height: 26)
                 }
                 if !expression.caption.isEmpty {
                     Text(expression.caption)
@@ -77,7 +98,6 @@ struct ExpressionFeedItem: View {
             .frame(maxWidth: 600, maxHeight: getMaxPostHeight())
             
         }
-            
     }
 }
 
