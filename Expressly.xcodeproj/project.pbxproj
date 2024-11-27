@@ -371,7 +371,6 @@
 				DEVELOPMENT_TEAM = DJU6W6S9T6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Expressly/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Expressly will be able to save expressions to your photos library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -404,7 +403,6 @@
 				DEVELOPMENT_TEAM = DJU6W6S9T6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Expressly/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Expressly will be able to save expressions to your photos library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
