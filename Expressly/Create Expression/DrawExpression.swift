@@ -141,7 +141,7 @@ struct DrawExpression: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Next") {
-                    expression.drawing = getUIImageFromCanvas(canvas).pngData() ?? Data()
+                    expression.drawing = getUIImageFromCanvas(canvas).heicData() ?? Data()
                     path.append(.ExpressionForm)
                 }
                 .disabled(isCanvasEmpty(canvas))

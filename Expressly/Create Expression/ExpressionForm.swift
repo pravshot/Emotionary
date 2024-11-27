@@ -98,6 +98,8 @@ struct ExpressionForm: View {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 ShareLink(
                     item: Image(uiImage: expression.getUIImage()),
+                    subject: Text(expression.title.isEmpty ? expression.prompt : expression.title),
+                    message: Text(expression.caption),
                     preview: SharePreview(
                         expression.title.isEmpty ? expression.prompt : expression.title,
                         image: Image(uiImage: expression.getUIImage())

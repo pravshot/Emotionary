@@ -39,6 +39,8 @@ struct ExpressionFeedItem: View {
                     Spacer()
                     ShareLink(
                         item: Image(uiImage: expression.getUIImage()),
+                        subject: Text(expression.title),
+                        message: Text(expression.caption),
                         preview: SharePreview(
                             expression.title,
                             image: Image(uiImage: expression.getUIImage())
