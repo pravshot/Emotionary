@@ -90,7 +90,7 @@ struct Prompt {
         "Illustrate something that inspired you this week.",
         "Capture the feeling of completing a task you've been avoiding.",
         "Portray a recent moment of clarity.",
-        "Express something that made you laugh today.",
+        "What's something that made you laugh today.",
         "Translate your current mood into an abstract design.",
         "Illustrate the feeling of letting go of stress.",
         "Represent a comforting routine in your daily life.",
