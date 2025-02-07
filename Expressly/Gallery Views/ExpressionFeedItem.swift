@@ -10,6 +10,7 @@ import SwiftUI
 struct ExpressionFeedItem: View {
     var expression: Expression
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.colorScheme) var colorScheme
     @State private var isPresentingConfirm: Bool = false
     
     var body: some View {
@@ -53,6 +54,7 @@ struct ExpressionFeedItem: View {
                         Spacer()
                     }
                 }
+                .backgroundStyle(colorScheme == .dark ? .black : .white)
                 HStack(alignment: .top, spacing: 10) {
                     Text(expression.title)
                         .font(.title2)
