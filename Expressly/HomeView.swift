@@ -47,12 +47,12 @@ struct iPadHomeView: View {
     var body: some View {
         VStack {
             TabTitle(text: "Welcome back")
-            HStack(alignment: .top) {
-                VStack {
+            HStack(alignment: .top, spacing: 16) {
+                VStack(spacing: 16) {
                     NewExpression(path: $navPath)
                     RecentEmotions()
                 }
-                VStack {
+                VStack(spacing: 16) {
                     DailyStreak()
                     AllEmotions()
                 }
