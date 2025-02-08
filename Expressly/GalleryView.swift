@@ -19,7 +19,7 @@ struct GalleryView: View {
         NavigationStack {
             VStack {
                 VStack {
-                    TabTitle(text: "Your expressions")
+//                    TabTitle(text: "Your expressions")
                     
                     Picker("Gallery Options", selection: $selectedViewOption) {
                         Image(systemName: selectedViewOption == .Recents ? "clock.fill" : "clock")
@@ -94,6 +94,8 @@ struct GalleryView: View {
                 }
                 
             }
+            .navigationTitle(Text("Expression Gallery"))
+            .navigationBarTitleDisplayMode(.large)
             
         }
         

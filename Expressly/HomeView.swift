@@ -12,11 +12,15 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack(path: $navPath) {
-            if UIDevice.isIPhone {
-                iPhoneHomeView(navPath: $navPath)
-            } else {
-                iPadHomeView(navPath: $navPath)
+            Group {
+                if UIDevice.isIPhone {
+                    iPhoneHomeView(navPath: $navPath)
+                } else {
+                    iPadHomeView(navPath: $navPath)
+                }
             }
+            .navigationTitle(Text("Welcome back"))
+            .navigationBarTitleDisplayMode(.large)
         }
     }
 }
@@ -25,8 +29,7 @@ struct iPhoneHomeView: View {
     @Binding var navPath: [NavPath]
     var body: some View {
         ScrollView {
-            VStack(spacing: 16) {
-                TabTitle(text: "Welcome back")
+            VStack(spacing: 12) {
                 NewExpression(path: $navPath)
                 DailyStreak()
                 RecentEmotions()
@@ -40,13 +43,8 @@ struct iPhoneHomeView: View {
 
 struct iPadHomeView: View {
     @Binding var navPath: [NavPath]
-    let columns = [
-        GridItem(.flexible(), spacing: 16),
-        GridItem(.flexible(), spacing: 16)
-    ]
     var body: some View {
         VStack {
-            TabTitle(text: "Welcome back")
             HStack(alignment: .top, spacing: 16) {
                 VStack(spacing: 16) {
                     NewExpression(path: $navPath)
@@ -60,17 +58,6 @@ struct iPadHomeView: View {
             Spacer()
         }
         .padding(.horizontal)
-    }
-}
-
-struct TabTitle: View {
-    var text: String
-    var body: some View {
-        Text(text)
-            .font(.title)
-            .fontWeight(.bold)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top)
     }
 }
 
