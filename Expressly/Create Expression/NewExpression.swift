@@ -30,8 +30,9 @@ struct NewExpression: View {
                 .id(lastPrompt)
             PromptNavigationCard(expression: newExpression, prompt: Prompt.freestyleMessage, path: $path)
         } label: {
-            Text("Create New Expression")
+            Label("Guided Prompts", systemImage: "scribble.variable")
                 .font(.headline)
+                .foregroundStyle(.accent)
         }
         .navigationDestination(for: NavPath.self) {pathValue in
             switch pathValue {

@@ -16,7 +16,7 @@ struct ContentView: View {
         TabView(selection: $tab) {
             HomeView()
                 .tabItem {
-                    Label("Home", systemImage: "house")
+                    Label("Create", systemImage: "plus.circle")
                         .environment(\.symbolVariants, tab == .home ? .fill : .none)
                 }
                 .tag(Tab.home)

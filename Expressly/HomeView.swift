@@ -19,7 +19,7 @@ struct HomeView: View {
                     iPadHomeView(navPath: $navPath)
                 }
             }
-            .navigationTitle(Text("Welcome back"))
+            .navigationTitle(Text("Create Expression"))
             .navigationBarTitleDisplayMode(.large)
         }
     }
@@ -32,6 +32,11 @@ struct iPhoneHomeView: View {
             VStack(spacing: 12) {
                 NewExpression(path: $navPath)
                 DailyStreak()
+                Text("Trends")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, 12)
                 RecentEmotions()
                 AllEmotions()
             }

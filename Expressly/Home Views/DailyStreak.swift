@@ -105,8 +105,9 @@ struct DailyStreak: View {
             }
             
         } label: {
-            Text("Daily Streak")
+            Label("Daily Streak", systemImage: "flame.fill")
                 .font(.headline)
+                .foregroundStyle(streakColor)
         }
     }
 }

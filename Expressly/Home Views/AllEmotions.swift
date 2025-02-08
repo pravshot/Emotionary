@@ -10,6 +10,7 @@ import SwiftData
 import Charts
 
 struct AllEmotions: View {
+    @Environment(\.colorScheme) var colorScheme
     @Query private var expressions: [Expression]
     var emotionCounts: [Emotion: Int] {
         var counts: [Emotion: Int] = [:]
@@ -71,8 +72,9 @@ struct AllEmotions: View {
                 }
             }
         } label: {
-            Text("All Emotions")
+            Label("All Emotions", systemImage: colorScheme == .light ? "face.smiling.fill" :"face.smiling")
                 .font(.headline)
+                .foregroundStyle(Color.indigo)
         }
     }
 }

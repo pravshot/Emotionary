@@ -69,8 +69,9 @@ struct RecentEmotions: View {
                    maxHeight: UIDevice.isIPhone ? 180 : 300)
             
         } label: {
-            Text("Recent Emotions")
+            Label("Recent Emotions", systemImage: "clock.fill")
                 .font(.headline)
+                .foregroundStyle(Color.indigo)
         }
     }
 }
