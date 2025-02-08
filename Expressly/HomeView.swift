@@ -25,7 +25,7 @@ struct iPhoneHomeView: View {
     @Binding var navPath: [NavPath]
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(spacing: 16) {
                 TabTitle(text: "Welcome back")
                 NewExpression(path: $navPath)
                 DailyStreak()
