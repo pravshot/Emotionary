@@ -12,6 +12,7 @@ struct ExpressionForm: View {
     @Binding var expression: Expression
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
     
     @FocusState private var isDescFocused: Bool
     
@@ -97,12 +98,12 @@ struct ExpressionForm: View {
             }
             ToolbarItemGroup(placement: .topBarTrailing) {
                 ShareLink(
-                    item: Image(uiImage: expression.getUIImage()),
+                    item: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black)),
                     subject: Text(expression.title.isEmpty ? expression.prompt : expression.title),
                     message: Text(expression.caption),
                     preview: SharePreview(
                         expression.title.isEmpty ? expression.prompt : expression.title,
-                        image: Image(uiImage: expression.getUIImage())
+                        image: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black))
                     )
                 )
                 Button("Done") {

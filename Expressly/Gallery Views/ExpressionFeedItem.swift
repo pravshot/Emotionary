@@ -61,12 +61,12 @@ struct ExpressionFeedItem: View {
                         .bold()
                     Spacer()
                     ShareLink(
-                        item: Image(uiImage: expression.getUIImage()),
+                        item: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black)),
                         subject: Text(expression.title),
                         message: Text(expression.caption),
                         preview: SharePreview(
                             expression.title,
-                            image: Image(uiImage: expression.getUIImage())
+                            image: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black))
                         )
                     ) {
                         Image(systemName: "square.and.arrow.up")
