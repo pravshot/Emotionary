@@ -17,7 +17,6 @@
 		C9551A112C67F98800F2E072 /* DailyStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A102C67F98800F2E072 /* DailyStreak.swift */; };
 		C9551A132C67F9BE00F2E072 /* RecentEmotions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A122C67F9BE00F2E072 /* RecentEmotions.swift */; };
 		C9551A172C685DA200F2E072 /* PromptNavigationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A162C685DA200F2E072 /* PromptNavigationCard.swift */; };
-		C9551A192C685DE900F2E072 /* NewExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A182C685DE900F2E072 /* NewExpression.swift */; };
 		C9551A1C2C692DF100F2E072 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A1B2C692DF100F2E072 /* CreateView.swift */; };
 		C9551A1E2C69300200F2E072 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A1D2C69300200F2E072 /* GalleryView.swift */; };
 		C9551A202C6930E100F2E072 /* AllEmotions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A1F2C6930E100F2E072 /* AllEmotions.swift */; };
@@ -44,7 +43,6 @@
 		C9551A102C67F98800F2E072 /* DailyStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStreak.swift; sourceTree = "<group>"; };
 		C9551A122C67F9BE00F2E072 /* RecentEmotions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentEmotions.swift; sourceTree = "<group>"; };
 		C9551A162C685DA200F2E072 /* PromptNavigationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptNavigationCard.swift; sourceTree = "<group>"; };
-		C9551A182C685DE900F2E072 /* NewExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpression.swift; sourceTree = "<group>"; };
 		C9551A1B2C692DF100F2E072 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		C9551A1D2C69300200F2E072 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		C9551A1F2C6930E100F2E072 /* AllEmotions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEmotions.swift; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 		C9551A212C69A40100F2E072 /* Create Expression */ = {
 			isa = PBXGroup;
 			children = (
-				C9551A182C685DE900F2E072 /* NewExpression.swift */,
 				C9F4832B2D6072A00056A319 /* FreeformCreate.swift */,
 				C9F4832D2D6072AF0056A319 /* GuidedPromptCreate.swift */,
 				C9551A162C685DA200F2E072 /* PromptNavigationCard.swift */,
@@ -229,7 +226,6 @@
 				C95519FB2C67CFA700F2E072 /* ContentView.swift in Sources */,
 				C9551A112C67F98800F2E072 /* DailyStreak.swift in Sources */,
 				C9551A0E2C67EA7700F2E072 /* Prompt.swift in Sources */,
-				C9551A192C685DE900F2E072 /* NewExpression.swift in Sources */,
 				C9551A1E2C69300200F2E072 /* GalleryView.swift in Sources */,
 				C9F4832C2D6072A00056A319 /* FreeformCreate.swift in Sources */,
 				C9551A0C2C67E68000F2E072 /* Emotion.swift in Sources */,
