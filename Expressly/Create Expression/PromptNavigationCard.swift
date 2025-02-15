@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct PromptNavigationCard: View {
-    var expression: Expression
-    @State var prompt: String
-    
-    @Binding var path: [NavPath]
+    var prompt: String
     
     var body: some View {
         GroupBox {
@@ -21,33 +18,18 @@ struct PromptNavigationCard: View {
                     .foregroundStyle(.gray)
                     .fixedSize(horizontal: false, vertical: true)
                 Spacer()
-                if (prompt != Prompt.freestyleMessage) {
-                    Button {
-                        prompt = Prompt.random(exclude: prompt)
-                    } label: {
-                        Image(systemName: "shuffle.circle.fill")
-                            .resizable()
-                            .frame(width: 35, height: 35)
-                    }
-                }
                 Image(systemName: "chevron.right")
                     .foregroundStyle(.gray)
                 
             }
-        }
-        .onTapGesture {
-            expression.prompt = prompt
-            path.append(.DrawExpression)
         }
     }
 }
 
 #Preview {
     struct Preview: View {
-        var expression = Expression()
-        @State var navPath: [NavPath] = []
         var body: some View {
-            PromptNavigationCard(expression: expression, prompt: Prompt.random(), path: $navPath)
+            PromptNavigationCard(prompt: Prompt.random())
         }
     }
     return Preview()

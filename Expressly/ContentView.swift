@@ -10,16 +10,22 @@ import SwiftData
 import UserNotifications
 
 struct ContentView: View {
-    @State var tab: Tab = .home
+    @State var tab: Tab = .create
 
     var body: some View {
         TabView(selection: $tab) {
-            HomeView()
+            TrendsView()
+                .tabItem {
+                    Label("Trends", systemImage: "chart.bar")
+                        .environment(\.symbolVariants, tab == .trends ? .fill : .none)
+                }
+                .tag(Tab.trends)
+            CreateView()
                 .tabItem {
                     Label("Create", systemImage: "plus.circle")
-                        .environment(\.symbolVariants, tab == .home ? .fill : .none)
+                        .environment(\.symbolVariants, tab == .create ? .fill : .none)
                 }
-                .tag(Tab.home)
+                .tag(Tab.create)
             GalleryView()
                 .tabItem {
                     Label("Gallery", systemImage: "photo.on.rectangle.angled")
@@ -82,8 +88,9 @@ private let notificationMessages =
 ]
 
 enum Tab {
-    case home
+    case create
     case gallery
+    case trends
 }
 
 #Preview {

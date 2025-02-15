@@ -47,19 +47,24 @@ final class Expression {
 
 extension UIImage {
 
-  func withBackground(color: UIColor) -> UIImage? {
-    var image: UIImage?
-    UIGraphicsBeginImageContextWithOptions(size, false, scale)
-    let imageRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-    if let context = UIGraphicsGetCurrentContext() {
-      context.setFillColor(color.cgColor)
-      context.fill(imageRect)
-      draw(in: imageRect, blendMode: .normal, alpha: 1.0)
-      image = UIGraphicsGetImageFromCurrentImageContext()
-      UIGraphicsEndImageContext()
-      return image
+    func withBackground(color: UIColor) -> UIImage? {
+        // Get the image's actual bounds
+        let rect = CGRect(origin: .zero, size: size)
+        
+        // Create renderer with the same size as the image
+        let renderer = UIGraphicsImageRenderer(size: size, format: {
+            let format = UIGraphicsImageRendererFormat()
+            format.scale = scale // Preserve original scale
+            return format
+        }())
+        return renderer.image { context in
+            // Fill background edge-to-edge
+            color.setFill()
+            context.fill(rect)
+            
+            // Draw original image edge-to-edge
+            draw(in: rect)
+        }
     }
-    return nil
-  }
 
 }

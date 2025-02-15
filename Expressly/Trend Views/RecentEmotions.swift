@@ -23,6 +23,7 @@ struct RecentEmotions: View {
     }
 
     var body: some View {
+        let emotions = self.emotions
         GroupBox {
             Chart {
                 ForEach(emotions.indices, id: \.self) { index in
@@ -44,7 +45,7 @@ struct RecentEmotions: View {
             }
             .overlay {
                 if emotions.isEmpty {
-                    Text("No data")
+                    Text("No Expressions Created")
                         .font(.title2)
                         .foregroundStyle(.gray)
                 }
@@ -71,11 +72,18 @@ struct RecentEmotions: View {
         } label: {
             Label("Recent Emotions", systemImage: "clock.fill")
                 .font(.headline)
-                .foregroundStyle(Color.indigo)
+                .foregroundStyle(mostRecentEmotionColor(emotions))
         }
     }
 }
 
+func mostRecentEmotionColor(_ emotions: [Emotion]) -> Color {
+    if emotions.isEmpty {
+        return .accent
+    }
+    let mostRecentEmotion = emotions.last!
+    return mostRecentEmotion != .neutral ? mostRecentEmotion.color : .yellow
+}
 
 #Preview {
     return RecentEmotions()
