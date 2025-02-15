@@ -8,21 +8,25 @@
 import SwiftUI
 
 struct ExpressionGridItem: View {
+    @Environment(\.colorScheme) var colorScheme
     var expression: Expression
+    
+    var expressionImage: UIImage {
+        expression.getUIImageWithBackground(colorScheme == .light ? .white : .black)
+    }
+    var shadowColor: Color {
+        colorScheme == .light ? .black.opacity(0.25) : .white.opacity(0.75)
+    }
     
     var body: some View {
         GeometryReader { geometry in
-            Image(uiImage: expression.getUIImage())
+            Image(uiImage: expressionImage)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: geometry.size.width, height: geometry.size.width)
                 .clipped()
                 .clipShape(.rect(cornerRadius: 8))
-                .overlay {
-                    RoundedRectangle(cornerRadius: 8)
-                        .inset(by: 0.5)
-                        .stroke(.gray.opacity(0.2), lineWidth: 1)
-                }
+                .shadow(color: shadowColor, radius: 2, x: 0, y: 1)
                 .overlay(alignment: .bottomTrailing) {
                     Image(expression.emotion!.icon)
                         .resizable()
@@ -31,12 +35,12 @@ struct ExpressionGridItem: View {
                 }
                 .contextMenu {
                     ShareLink(
-                        item: Image(uiImage: expression.getUIImage()),
+                        item: Image(uiImage: expressionImage),
                         subject: Text(expression.title),
                         message: Text(expression.caption),
                         preview: SharePreview(
                             expression.title,
-                            image: Image(uiImage: expression.getUIImage())
+                            image: Image(uiImage: expressionImage)
                         )
                     ) {
                         Label("Share", systemImage: "square.and.arrow.up")
@@ -47,8 +51,25 @@ struct ExpressionGridItem: View {
 }
 
 #Preview {
-    ExpressionGridItem(expression: Expression(
-        drawing: UIImage(systemName: "flame")?.pngData() ?? Data(),
-        emotion: Emotion.happy
-    ))
+    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 3),
+              alignment: .center,
+              spacing: 8) {
+        ExpressionGridItem(expression: Expression(
+            drawing: UIImage(systemName: "flame")?.pngData() ?? Data(),
+            emotion: Emotion.happy
+        ))
+        ExpressionGridItem(expression: Expression(
+            drawing: UIImage(systemName: "flame")?.pngData() ?? Data(),
+            emotion: Emotion.happy
+        ))
+        ExpressionGridItem(expression: Expression(
+            drawing: UIImage(systemName: "flame")?.pngData() ?? Data(),
+            emotion: Emotion.happy
+        ))
+        ExpressionGridItem(expression: Expression(
+            drawing: UIImage(systemName: "flame")?.pngData() ?? Data(),
+            emotion: Emotion.happy
+        ))
+    }
+    
 }
