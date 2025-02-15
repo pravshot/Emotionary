@@ -23,6 +23,7 @@ struct AllEmotions: View {
     let barCornerRadius = 10.0
     
     var body: some View {
+        let emotionCounts = self.emotionCounts
         GroupBox {
             VStack {
                 Chart {
@@ -37,7 +38,7 @@ struct AllEmotions: View {
                 }
                 .overlay {
                     if emotionCounts.isEmpty {
-                        Text("No data")
+                        Text("No Expressions Created")
                             .font(.title2)
                             .foregroundStyle(.gray)
                     }
@@ -74,9 +75,17 @@ struct AllEmotions: View {
         } label: {
             Label("All Emotions", systemImage: colorScheme == .light ? "face.smiling.fill" :"face.smiling")
                 .font(.headline)
-                .foregroundStyle(Color.purple)
+                .foregroundStyle(mostCommonEmotionColor(emotionCounts))
         }
     }
+}
+
+func mostCommonEmotionColor(_ emotionCounts: [Emotion:Int]) -> Color {
+    if emotionCounts.isEmpty {
+        return .accent
+    }
+    let mostCommonEmotion = emotionCounts.max(by: { $0.value < $1.value })!.key
+    return mostCommonEmotion != .neutral ? mostCommonEmotion.color : .yellow
 }
 
 #Preview {
