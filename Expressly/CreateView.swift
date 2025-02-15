@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  CreateView.swift
 //  Emotionary
 //
 //  Created by Praveen Kalva on 8/11/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct CreateView: View {
     @State var navPath: [NavPath] = []
     @State var newExpression = Expression()
     
@@ -15,9 +15,9 @@ struct HomeView: View {
         NavigationStack(path: $navPath) {
             Group {
                 if UIDevice.isIPhone {
-                    iPhoneHomeView(navPath: $navPath, newExpression: $newExpression)
+                    iPhoneCreateView(navPath: $navPath, newExpression: $newExpression)
                 } else {
-                    iPadHomeView(navPath: $navPath, newExpression: $newExpression)
+                    iPadCreateView(navPath: $navPath, newExpression: $newExpression)
                 }
             }
             .navigationTitle(Text("Create Expression"))
@@ -36,13 +36,12 @@ struct HomeView: View {
     }
 }
 
-struct iPhoneHomeView: View {
+struct iPhoneCreateView: View {
     @Binding var navPath: [NavPath]
     @Binding var newExpression: Expression
     var body: some View {
         ScrollView {
             VStack(spacing: 12) {
-//                NewExpression(path: $navPath)
                 GuidedPromptCreate(path: $navPath, newExpression: $newExpression)
                 FreeformCreate(path: $navPath, newExpression: $newExpression)
             }
@@ -52,7 +51,7 @@ struct iPhoneHomeView: View {
     }
 }
 
-struct iPadHomeView: View {
+struct iPadCreateView: View {
     @Binding var navPath: [NavPath]
     @Binding var newExpression: Expression
     var body: some View {
@@ -91,5 +90,5 @@ extension UIDevice {
 }
 
 #Preview {
-    return HomeView()
+    return CreateView()
 }

@@ -20,7 +20,7 @@ struct ContentView: View {
                         .environment(\.symbolVariants, tab == .trends ? .fill : .none)
                 }
                 .tag(Tab.trends)
-            HomeView()
+            CreateView()
                 .tabItem {
                     Label("Create", systemImage: "plus.circle")
                         .environment(\.symbolVariants, tab == .create ? .fill : .none)

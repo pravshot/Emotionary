@@ -18,7 +18,7 @@
 		C9551A132C67F9BE00F2E072 /* RecentEmotions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A122C67F9BE00F2E072 /* RecentEmotions.swift */; };
 		C9551A172C685DA200F2E072 /* PromptNavigationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A162C685DA200F2E072 /* PromptNavigationCard.swift */; };
 		C9551A192C685DE900F2E072 /* NewExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A182C685DE900F2E072 /* NewExpression.swift */; };
-		C9551A1C2C692DF100F2E072 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A1B2C692DF100F2E072 /* HomeView.swift */; };
+		C9551A1C2C692DF100F2E072 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A1B2C692DF100F2E072 /* CreateView.swift */; };
 		C9551A1E2C69300200F2E072 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A1D2C69300200F2E072 /* GalleryView.swift */; };
 		C9551A202C6930E100F2E072 /* AllEmotions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A1F2C6930E100F2E072 /* AllEmotions.swift */; };
 		C9551A232C69B14800F2E072 /* ExpressionPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A222C69B14800F2E072 /* ExpressionPrompt.swift */; };
@@ -45,7 +45,7 @@
 		C9551A122C67F9BE00F2E072 /* RecentEmotions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentEmotions.swift; sourceTree = "<group>"; };
 		C9551A162C685DA200F2E072 /* PromptNavigationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptNavigationCard.swift; sourceTree = "<group>"; };
 		C9551A182C685DE900F2E072 /* NewExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpression.swift; sourceTree = "<group>"; };
-		C9551A1B2C692DF100F2E072 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C9551A1B2C692DF100F2E072 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		C9551A1D2C69300200F2E072 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		C9551A1F2C6930E100F2E072 /* AllEmotions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEmotions.swift; sourceTree = "<group>"; };
 		C9551A222C69B14800F2E072 /* ExpressionPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionPrompt.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 				C95519F82C67CFA700F2E072 /* EmotionaryApp.swift */,
 				C95519FA2C67CFA700F2E072 /* ContentView.swift */,
 				C9F483292D602B520056A319 /* TrendsView.swift */,
-				C9551A1B2C692DF100F2E072 /* HomeView.swift */,
+				C9551A1B2C692DF100F2E072 /* CreateView.swift */,
 				C9551A1D2C69300200F2E072 /* GalleryView.swift */,
 				C95519FE2C67CFA900F2E072 /* Assets.xcassets */,
 				C9551A002C67CFA900F2E072 /* Preview Content */,
@@ -241,7 +241,7 @@
 				C9551A312C71248700F2E072 /* ExpressionFeed.swift in Sources */,
 				C9551A2F2C7123EC00F2E072 /* ExpressionFeedItem.swift in Sources */,
 				C9551A202C6930E100F2E072 /* AllEmotions.swift in Sources */,
-				C9551A1C2C692DF100F2E072 /* HomeView.swift in Sources */,
+				C9551A1C2C692DF100F2E072 /* CreateView.swift in Sources */,
 				C9551A252C69B90C00F2E072 /* DrawExpression.swift in Sources */,
 				C9551A132C67F9BE00F2E072 /* RecentEmotions.swift in Sources */,
 				C9551A0A2C67E50C00F2E072 /* Expression.swift in Sources */,
