@@ -12,11 +12,17 @@ struct Prompt {
     static let freestyleMessage = "Express yourself freely."
     
     static func random(exclude: String = "") -> String {
-        var prompt = exclude
-        while prompt == exclude {
-            prompt = self.prompts[Int.random(in: 0..<prompts.count)]
+        var randomIndex = Int.random(in: 0..<prompts.count - 1)
+        if prompts[randomIndex] == exclude {
+            randomIndex = prompts.count - 1
         }
-        return prompt
+        return prompts[randomIndex]
+    }
+    
+    static func randomK(k: Int, exclude: [String] = []) -> [String] {
+        if k <= 0 { return []}
+        let availablePrompts = prompts.filter { !exclude.contains($0) }
+        return Array(availablePrompts.shuffled().prefix(k))
     }
     
     private static let prompts: [String] = [

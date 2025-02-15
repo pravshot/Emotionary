@@ -74,7 +74,7 @@ struct AllEmotions: View {
         } label: {
             Label("All Emotions", systemImage: colorScheme == .light ? "face.smiling.fill" :"face.smiling")
                 .font(.headline)
-                .foregroundStyle(Color.indigo)
+                .foregroundStyle(Color.purple)
         }
     }
 }

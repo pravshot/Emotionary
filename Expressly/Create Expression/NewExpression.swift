@@ -26,9 +26,9 @@ struct NewExpression: View {
     
     var body: some View {
         GroupBox {
-            PromptNavigationCard(expression: newExpression, prompt: Prompt.random(exclude: lastPrompt), path: $path)
-                .id(lastPrompt)
-            PromptNavigationCard(expression: newExpression, prompt: Prompt.freestyleMessage, path: $path)
+//            PromptNavigationCard(expression: newExpression, prompt: Prompt.random(exclude: lastPrompt), path: $path)
+//                .id(lastPrompt)
+//            PromptNavigationCard(expression: newExpression, prompt: Prompt.freestyleMessage, path: $path)
         } label: {
             Label("Guided Prompts", systemImage: "scribble.variable")
                 .font(.headline)
@@ -46,11 +46,6 @@ struct NewExpression: View {
         }
             
     }
-}
-
-enum NavPath: String {
-    case DrawExpression = "DrawExpression"
-    case ExpressionForm = "ExpressionForm"
 }
 
 #Preview {

@@ -71,7 +71,7 @@ struct RecentEmotions: View {
         } label: {
             Label("Recent Emotions", systemImage: "clock.fill")
                 .font(.headline)
-                .foregroundStyle(Color.indigo)
+                .foregroundStyle(Color.purple)
         }
     }
 }

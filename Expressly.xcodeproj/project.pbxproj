@@ -27,6 +27,9 @@
 		C9551A2D2C702B5500F2E072 /* ExpressionGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A2C2C702B5500F2E072 /* ExpressionGridItem.swift */; };
 		C9551A2F2C7123EC00F2E072 /* ExpressionFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A2E2C7123EC00F2E072 /* ExpressionFeedItem.swift */; };
 		C9551A312C71248700F2E072 /* ExpressionFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9551A302C71248700F2E072 /* ExpressionFeed.swift */; };
+		C9F4832A2D602B520056A319 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F483292D602B520056A319 /* TrendsView.swift */; };
+		C9F4832C2D6072A00056A319 /* FreeformCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4832B2D6072A00056A319 /* FreeformCreate.swift */; };
+		C9F4832E2D6072AF0056A319 /* GuidedPromptCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4832D2D6072AF0056A319 /* GuidedPromptCreate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		C9551A2C2C702B5500F2E072 /* ExpressionGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionGridItem.swift; sourceTree = "<group>"; };
 		C9551A2E2C7123EC00F2E072 /* ExpressionFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionFeedItem.swift; sourceTree = "<group>"; };
 		C9551A302C71248700F2E072 /* ExpressionFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionFeed.swift; sourceTree = "<group>"; };
+		C9F483292D602B520056A319 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
+		C9F4832B2D6072A00056A319 /* FreeformCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeformCreate.swift; sourceTree = "<group>"; };
+		C9F4832D2D6072AF0056A319 /* GuidedPromptCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedPromptCreate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +91,11 @@
 			children = (
 				C9551A212C69A40100F2E072 /* Create Expression */,
 				C9551A1A2C692DBB00F2E072 /* Gallery Views */,
-				C9551A0F2C67F90F00F2E072 /* Home Views */,
+				C9551A0F2C67F90F00F2E072 /* Trend Views */,
 				C9551A082C67E4BA00F2E072 /* Models */,
 				C95519F82C67CFA700F2E072 /* EmotionaryApp.swift */,
 				C95519FA2C67CFA700F2E072 /* ContentView.swift */,
+				C9F483292D602B520056A319 /* TrendsView.swift */,
 				C9551A1B2C692DF100F2E072 /* HomeView.swift */,
 				C9551A1D2C69300200F2E072 /* GalleryView.swift */,
 				C95519FE2C67CFA900F2E072 /* Assets.xcassets */,
@@ -115,14 +122,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		C9551A0F2C67F90F00F2E072 /* Home Views */ = {
+		C9551A0F2C67F90F00F2E072 /* Trend Views */ = {
 			isa = PBXGroup;
 			children = (
 				C9551A102C67F98800F2E072 /* DailyStreak.swift */,
 				C9551A122C67F9BE00F2E072 /* RecentEmotions.swift */,
 				C9551A1F2C6930E100F2E072 /* AllEmotions.swift */,
 			);
-			path = "Home Views";
+			path = "Trend Views";
 			sourceTree = "<group>";
 		};
 		C9551A1A2C692DBB00F2E072 /* Gallery Views */ = {
@@ -139,6 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				C9551A182C685DE900F2E072 /* NewExpression.swift */,
+				C9F4832B2D6072A00056A319 /* FreeformCreate.swift */,
+				C9F4832D2D6072AF0056A319 /* GuidedPromptCreate.swift */,
 				C9551A162C685DA200F2E072 /* PromptNavigationCard.swift */,
 				C9551A242C69B90B00F2E072 /* DrawExpression.swift */,
 				C9551A222C69B14800F2E072 /* ExpressionPrompt.swift */,
@@ -222,6 +231,7 @@
 				C9551A0E2C67EA7700F2E072 /* Prompt.swift in Sources */,
 				C9551A192C685DE900F2E072 /* NewExpression.swift in Sources */,
 				C9551A1E2C69300200F2E072 /* GalleryView.swift in Sources */,
+				C9F4832C2D6072A00056A319 /* FreeformCreate.swift in Sources */,
 				C9551A0C2C67E68000F2E072 /* Emotion.swift in Sources */,
 				C9551A292C6BCC0000F2E072 /* ExpressionForm.swift in Sources */,
 				C9551A2D2C702B5500F2E072 /* ExpressionGridItem.swift in Sources */,
@@ -235,6 +245,8 @@
 				C9551A252C69B90C00F2E072 /* DrawExpression.swift in Sources */,
 				C9551A132C67F9BE00F2E072 /* RecentEmotions.swift in Sources */,
 				C9551A0A2C67E50C00F2E072 /* Expression.swift in Sources */,
+				C9F4832E2D6072AF0056A319 /* GuidedPromptCreate.swift in Sources */,
+				C9F4832A2D602B520056A319 /* TrendsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
