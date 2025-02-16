@@ -28,6 +28,7 @@ struct ExpressionFeed: View {
                     .animation(.default, value: allExpressions)
                 }
             }
+            .padding(.top, 1)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     proxy.scrollTo(initialPosition, anchor: .center)

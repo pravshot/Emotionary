@@ -125,7 +125,7 @@ func formatDate(_ date: Date) -> String {
 
 func getMaxPostHeight() -> CGFloat? {
     let ui = UIScreen.current
-    let maxScale = 0.75
+    let maxScale = 0.70
     if (ui != nil) {
         return ui!.bounds.height * maxScale
     } else {
