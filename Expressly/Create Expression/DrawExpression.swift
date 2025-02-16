@@ -9,8 +9,9 @@ import SwiftUI
 import PencilKit
 
 struct DrawExpression: View {
-    @Binding var path: [NavPath]
-    var expression: Expression
+    @Binding var expression: Expression
+    @Binding var path: [String]
+    var returnToHome: () -> Void
     
     @State var refreshView = false
     @State var canvas = PKCanvasView()
@@ -131,7 +132,7 @@ struct DrawExpression: View {
             // Go back to Home
             ToolbarItem(placement: .topBarLeading) {
                 Button {
-                    presentationMode.wrappedValue.dismiss()
+                    returnToHome()
                 } label: {
                     HStack {
                         Image(systemName: "chevron.left")
@@ -142,7 +143,7 @@ struct DrawExpression: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Next") {
                     expression.drawing = getUIImageFromCanvas(canvas).heicData() ?? Data()
-                    path.append(.ExpressionForm)
+                    path.append("Form")
                 }
                 .disabled(isCanvasEmpty(canvas))
             }
@@ -236,10 +237,10 @@ extension UIScreen {
 
 #Preview {
     struct Preview: View {
-        @State var path: [NavPath] = []
-        var expression = Expression()
+        @State var expression = Expression()
+        @State var path: [String] = []
         var body: some View {
-            DrawExpression(path: $path, expression: expression)
+            DrawExpression(expression: $expression, path: $path, returnToHome: {})
         }
     }
     return Preview()

@@ -8,27 +8,19 @@
 import SwiftUI
 
 struct GuidedPromptCreate: View {
-    @Binding var path: [NavPath]
+    @Binding var showExpressionCreator: Bool
     @Binding var newExpression: Expression
     @State var prompts: [String] = Prompt.randomK(k: 3)
     
     var body: some View {
         GroupBox {
-            PromptNavigationCard(prompt: prompts[0])
-                .onTapGesture {
-                    newExpression.prompt = prompts[0]
-                    path.append(.DrawExpression)
-                }
-            PromptNavigationCard(prompt: prompts[1])
-                .onTapGesture {
-                    newExpression.prompt = prompts[1]
-                    path.append(.DrawExpression)
-                }
-            PromptNavigationCard(prompt: prompts[2])
-                .onTapGesture {
-                    newExpression.prompt = prompts[2]
-                    path.append(.DrawExpression)
-                }
+            ForEach(prompts, id: \.self) { prompt in
+                PromptNavigationCard(prompt: prompt)
+                    .onTapGesture {
+                        newExpression.prompt = prompt
+                        showExpressionCreator = true
+                    }
+            }
         } label: {
             HStack {
                 Label("Guided Prompts", systemImage: "scribble.variable")
@@ -52,10 +44,10 @@ struct GuidedPromptCreate: View {
 
 #Preview {
     struct Preview: View {
-        @State var navPath: [NavPath] = []
+        @State var showExpressionCreator = false
         @State var expression = Expression()
         var body: some View {
-            GuidedPromptCreate(path: $navPath, newExpression: $expression)
+            GuidedPromptCreate(showExpressionCreator: $showExpressionCreator, newExpression: $expression)
         }
     }
     return Preview()

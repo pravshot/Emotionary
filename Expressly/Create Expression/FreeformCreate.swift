@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FreeformCreate: View {
-    @Binding var path: [NavPath]
+    @Binding var showExpressionCreator: Bool
     @Binding var newExpression: Expression
     
     var body: some View {
@@ -16,7 +16,7 @@ struct FreeformCreate: View {
             PromptNavigationCard(prompt: Prompt.freestyleMessage)
                 .onTapGesture {
                     newExpression.prompt = Prompt.freestyleMessage
-                    path.append(.DrawExpression)
+                    showExpressionCreator = true
                 }
         } label: {
             Label("Freeform", systemImage: "scribble.variable")
@@ -28,10 +28,10 @@ struct FreeformCreate: View {
 
 #Preview {
     struct Preview: View {
-        @State var navPath: [NavPath] = []
+        @State var showExpressionCreator = false
         @State var expression = Expression()
         var body: some View {
-            FreeformCreate(path: $navPath, newExpression: $expression)
+            FreeformCreate(showExpressionCreator: $showExpressionCreator, newExpression: $expression)
         }
     }
     return Preview()
