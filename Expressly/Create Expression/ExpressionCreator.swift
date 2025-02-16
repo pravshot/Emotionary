@@ -12,24 +12,27 @@ struct ExpressionCreator: View {
     @Binding var isPresented: Bool
     @Binding var expression: Expression
     
+    func returnToHome() {
+        expression = Expression()
+        isPresented = false
+    }
+    
     var body: some View {
         NavigationStack(path: $navPath) {
             Group {
-                DrawExpression(expression: $expression, path: $navPath, returnToHome: {isPresented = false})
+                DrawExpression(expression: $expression, path: $navPath, returnToHome: returnToHome)
             }
-//            .navigationTitle("New Expression")
-//            .navigationBarTitleDisplayMode(.inline)
-//            .navigationBarBackButtonHidden()
             .navigationDestination(for: String.self) { _ in
-                ExpressionForm(expression: $expression, path: $navPath, returnToHome: {isPresented = false})
+                ExpressionForm(expression: $expression, path: $navPath, returnToHome: returnToHome)
+            }
+        }
+        // once overlay is fully gone, clear the nav stack
+        .onDisappear {
+            withTransaction(Transaction(animation: nil)) {
+                navPath.removeAll()
             }
         }
     }
-}
-
-enum CreationStep {
-    case draw
-    case form
 }
 
 #Preview {

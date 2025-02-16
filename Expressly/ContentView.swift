@@ -10,33 +10,47 @@ import SwiftData
 import UserNotifications
 
 struct ContentView: View {
+    @State var showExpressionCreator = false
+    @State var newExpression = Expression()
     @State var tab: Tab = .create
 
     var body: some View {
-        TabView(selection: $tab) {
-            TrendsView()
-                .tabItem {
-                    Label("Trends", systemImage: "chart.bar")
-                        .environment(\.symbolVariants, tab == .trends ? .fill : .none)
-                }
-                .tag(Tab.trends)
-            CreateView()
-                .tabItem {
-                    Label("Create", systemImage: "plus.circle")
-                        .environment(\.symbolVariants, tab == .create ? .fill : .none)
-                }
-                .tag(Tab.create)
-            GalleryView()
-                .tabItem {
-                    Label("Gallery", systemImage: "photo.on.rectangle.angled")
-                        .environment(\.symbolVariants, tab == .gallery ? .fill : .none)
-                }
-                .tag(Tab.gallery)
+        ZStack {
+            TabView(selection: $tab) {
+                TrendsView()
+                    .tabItem {
+                        Label("Trends", systemImage: "chart.bar")
+                            .environment(\.symbolVariants, tab == .trends ? .fill : .none)
+                    }
+                    .tag(Tab.trends)
+                CreateView(showExpressionCreator: $showExpressionCreator, newExpression: $newExpression)
+                    .tabItem {
+                        Label("Create", systemImage: "plus.circle")
+                            .environment(\.symbolVariants, tab == .create ? .fill : .none)
+                    }
+                    .tag(Tab.create)
+                GalleryView()
+                    .tabItem {
+                        Label("Gallery", systemImage: "photo.on.rectangle.angled")
+                            .environment(\.symbolVariants, tab == .gallery ? .fill : .none)
+                    }
+                    .tag(Tab.gallery)
+            }
+            .onAppear {
+                requestNotificationPermission()
+                setupNotification()
+            }
+            
+            // Expression Creator overlay
+            if showExpressionCreator {
+                ExpressionCreator(isPresented: $showExpressionCreator, expression: $newExpression)
+                    .id(newExpression.id)
+                    .ignoresSafeArea()
+                    .transition(.move(edge: .trailing))
+                    .zIndex(1)
+            }
         }
-        .onAppear {
-            requestNotificationPermission()
-            setupNotification()
-        }
+        .animation(.snappy, value: showExpressionCreator)
     }
 }
 

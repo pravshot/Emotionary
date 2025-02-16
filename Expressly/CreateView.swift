@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CreateView: View {
-    @State var showExpressionCreator = false
-    @State var newExpression = Expression()
+    @Binding var showExpressionCreator: Bool
+    @Binding var newExpression: Expression
     
     var body: some View {
         NavigationStack {
@@ -22,9 +22,6 @@ struct CreateView: View {
             }
             .navigationTitle(Text("Create Expression"))
             .navigationBarTitleDisplayMode(.large)
-            .fullScreenCover(isPresented: $showExpressionCreator) {
-                ExpressionCreator(isPresented: $showExpressionCreator, expression: $newExpression)
-            }
         }
     }
 }
@@ -78,5 +75,12 @@ extension UIDevice {
 }
 
 #Preview {
-    return CreateView()
+    struct Preview: View {
+        @State var showExpressionCreator = false
+        @State var newExpression = Expression()
+        var body: some View {
+            CreateView(showExpressionCreator: $showExpressionCreator, newExpression: $newExpression)
+        }
+    }
+    return Preview()
 }

@@ -136,7 +136,7 @@ struct DrawExpression: View {
                 } label: {
                     HStack {
                         Image(systemName: "chevron.left")
-                        Text("Home")
+                        Text("Back")
                     }
                 }
             }

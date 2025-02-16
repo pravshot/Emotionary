@@ -110,7 +110,6 @@ struct ExpressionForm: View {
                 Button("Done") {
                     expression.date = Date()
                     modelContext.insert(expression) // save expression
-                    expression = Expression() // reset expression
                     returnToHome()
                 }
                 .disabled((expression.emotion == nil) || expression.title.isEmpty)
