@@ -19,7 +19,6 @@ struct GalleryView: View {
         NavigationStack {
             VStack {
                 VStack {
-//                    TabTitle(text: "Your expressions")
                     
                     Picker("Gallery Options", selection: $selectedViewOption) {
                         Image(systemName: selectedViewOption == .Recents ? "clock.fill" : "clock")
@@ -74,7 +73,6 @@ struct GalleryView: View {
                             ForEach(filteredExpressions) { expression in
                                 NavigationLink {
                                     ExpressionFeed(expressions: filteredExpressions, initialPosition: expression.id)
-                                        .toolbar(.hidden, for: .tabBar)
                                         .navigationBarTitleDisplayMode(.inline)
                                         .navigationTitle(selectedViewOption.rawValue)
                                 } label: {

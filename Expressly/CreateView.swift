@@ -8,42 +8,35 @@
 import SwiftUI
 
 struct CreateView: View {
-    @State var navPath: [NavPath] = []
+    @State var showExpressionCreator = false
     @State var newExpression = Expression()
     
     var body: some View {
-        NavigationStack(path: $navPath) {
+        NavigationStack {
             Group {
                 if UIDevice.isIPhone {
-                    iPhoneCreateView(navPath: $navPath, newExpression: $newExpression)
+                    iPhoneCreateView(showExpressionCreator: $showExpressionCreator, newExpression: $newExpression)
                 } else {
-                    iPadCreateView(navPath: $navPath, newExpression: $newExpression)
+                    iPadCreateView(showExpressionCreator: $showExpressionCreator, newExpression: $newExpression)
                 }
             }
             .navigationTitle(Text("Create Expression"))
             .navigationBarTitleDisplayMode(.large)
-            .navigationDestination(for: NavPath.self) {pathValue in
-                switch pathValue {
-                case NavPath.DrawExpression:
-                    DrawExpression(path: $navPath, expression: newExpression)
-                        .toolbar(.hidden, for: .tabBar)
-                case NavPath.ExpressionForm:
-                    ExpressionForm(path: $navPath, expression: $newExpression)
-                        .toolbar(.hidden, for: .tabBar)
-                }
+            .fullScreenCover(isPresented: $showExpressionCreator) {
+                ExpressionCreator(isPresented: $showExpressionCreator, expression: $newExpression)
             }
         }
     }
 }
 
 struct iPhoneCreateView: View {
-    @Binding var navPath: [NavPath]
+    @Binding var showExpressionCreator: Bool
     @Binding var newExpression: Expression
     var body: some View {
         ScrollView {
             VStack(spacing: 12) {
-                GuidedPromptCreate(path: $navPath, newExpression: $newExpression)
-                FreeformCreate(path: $navPath, newExpression: $newExpression)
+                GuidedPromptCreate(showExpressionCreator: $showExpressionCreator, newExpression: $newExpression)
+                FreeformCreate(showExpressionCreator: $showExpressionCreator, newExpression: $newExpression)
             }
             .padding(.horizontal)
         }
@@ -52,23 +45,18 @@ struct iPhoneCreateView: View {
 }
 
 struct iPadCreateView: View {
-    @Binding var navPath: [NavPath]
+    @Binding var showExpressionCreator: Bool
     @Binding var newExpression: Expression
     var body: some View {
         VStack {
             HStack(alignment: .top, spacing: 16) {
-                GuidedPromptCreate(path: $navPath, newExpression: $newExpression)
-                FreeformCreate(path: $navPath, newExpression: $newExpression)
+                GuidedPromptCreate(showExpressionCreator: $showExpressionCreator, newExpression: $newExpression)
+                FreeformCreate(showExpressionCreator: $showExpressionCreator, newExpression: $newExpression)
             }
             Spacer()
         }
         .padding(.horizontal)
     }
-}
-
-enum NavPath: String {
-    case DrawExpression = "DrawExpression"
-    case ExpressionForm = "ExpressionForm"
 }
 
 extension UIDevice {

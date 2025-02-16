@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ExpressionForm: View {
-    @Binding var path: [NavPath]
     @Binding var expression: Expression
+    @Binding var path: [String]
+    var returnToHome: () -> Void
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
@@ -110,7 +111,7 @@ struct ExpressionForm: View {
                     expression.date = Date()
                     modelContext.insert(expression) // save expression
                     expression = Expression() // reset expression
-                    path.removeAll() // return back to home view
+                    returnToHome()
                 }
                 .disabled((expression.emotion == nil) || expression.title.isEmpty)
             }
@@ -123,10 +124,10 @@ struct ExpressionForm: View {
 
 #Preview {
     struct Preview: View {
-        @State var path: [NavPath] = []
         @State var expression = Expression(drawing: UIImage(systemName: "flame")?.pngData() ?? Data())
+        @State var path: [String] = []
         var body: some View {
-            ExpressionForm(path: $path, expression: $expression)
+            ExpressionForm(expression: $expression, path: $path, returnToHome: {})
         }
     }
     return Preview()
