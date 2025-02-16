@@ -35,24 +35,25 @@ struct DrawExpression: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        VStack {
-            ExpressionPrompt(prompt: expression.prompt)
-                .padding(.horizontal)
-                .id(refreshView)
-            CanvasView(canvas: $canvas, 
-                       penColor: $penColor,
-                       paintbrushColor: $paintbrushColor,
-                       drawingTool: $drawingTool,
-                       isDrawing: $isDrawing,
-                       onChange: { refreshView.toggle() }
-            )
-            .padding(.bottom, 10)
-            .frame(height: nil)
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .bottomBar) {
+        ZStack {
+            VStack {
+                ExpressionPrompt(prompt: expression.prompt)
+                    .padding(.horizontal)
+                    .id(refreshView)
+                CanvasView(canvas: $canvas,
+                           penColor: $penColor,
+                           paintbrushColor: $paintbrushColor,
+                           drawingTool: $drawingTool,
+                           isDrawing: $isDrawing,
+                           onChange: { refreshView.toggle() }
+                )
+                .padding(.bottom, 3)
+                .frame(height: nil)
+            }
+            // drawing toolbar overlay
+            VStack {
                 Spacer()
-                HStack(spacing: 10) {
+                HStack(spacing: 20) {
                     // Undo Button
                     Button {
                         undoManager?.undo()
@@ -116,19 +117,23 @@ struct DrawExpression: View {
                         .disabled(!isDrawing)
                     
                 }
+                .fixedSize()
                 .padding(.horizontal)
                 .padding(.vertical, 5)
                 .background(
                     Capsule()
-                        .fill(Color(colorScheme == .dark ? UIColor.secondarySystemGroupedBackground : UIColor.systemGroupedBackground))
+                        .fill(.ultraThinMaterial)
                         .overlay(
                             Capsule()
                                 .stroke(.gray.opacity(0.1), lineWidth: 1)
                         )
                         .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
                 )
-                Spacer()
+                .padding(.bottom, 24)
             }
+            .ignoresSafeArea(.all, edges: .bottom)
+        }
+        .toolbar {
             // Go back to Home
             ToolbarItem(placement: .topBarLeading) {
                 Button {
