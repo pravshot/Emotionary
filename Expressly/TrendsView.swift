@@ -41,11 +41,11 @@ struct iPadTrendsView: View {
     var body: some View {
         VStack {
             HStack(alignment: .top, spacing: 16) {
-                DailyStreak()
                 VStack(spacing: 16) {
+                    DailyStreak()
                     RecentEmotions()
-                    AllEmotions()
                 }
+                AllEmotions()
             }
             Spacer()
         }
