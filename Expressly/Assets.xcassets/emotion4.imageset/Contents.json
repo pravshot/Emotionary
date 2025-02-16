@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "emotion2.svg",
+      "filename" : "emotion4.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "emotion2@2x.svg",
+      "filename" : "emotion4@2x.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "emotion2@3x.svg",
+      "filename" : "emotion4@3x.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

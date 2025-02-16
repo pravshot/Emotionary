@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "dark_streak_emotion4.svg",
+      "filename" : "no-streak-emotion-dark.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "dark_streak_emotion4@2x.svg",
+      "filename" : "no-streak-emotion-dark@2x.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "dark_streak_emotion4@3x.svg",
+      "filename" : "no-streak-emotion-dark@3x.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

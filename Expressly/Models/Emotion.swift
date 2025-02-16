@@ -28,15 +28,15 @@ enum Emotion: Int, CaseIterable, Codable, Identifiable {
     var color: Color {
         switch self {
             case .sad:
-                return Color(red: 0.87, green: 0.19, blue: 0)
+                return Color(red: 0.83, green: 0.18, blue: 0.18)
             case .upset:
-                return Color(red: 1, green: 0.54, blue: 0.25)
+                return Color(red: 1, green: 0.6, blue: 0)
             case .neutral:
-                return Color(red: 1, green: 0.84, blue: 0.04)
+                return Color(red: 0.94, green: 0.71, blue: 0.03)
             case .content:
-                return Color(red: 0.66, green: 0.87, blue: 0.47)
+                return Color(red: 0, green: 0.66, blue: 0)
             case .happy:
-                return Color(red: 0.51, green: 0.75, blue: 0.29)
+                return Color(red: 0, green: 0.52, blue: 0.36)
         }
     }
 }

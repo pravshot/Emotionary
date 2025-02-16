@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "streak_emotion1.svg",
+      "filename" : "streak-emotion.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "streak_emotion1@2x.svg",
+      "filename" : "streak-emotion@2x.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "streak_emotion1@3x.svg",
+      "filename" : "streak-emotion@3x.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
