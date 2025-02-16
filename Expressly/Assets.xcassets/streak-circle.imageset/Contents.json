@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "streak_circle.svg",
+      "filename" : "streak-circle.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "streak_circle@2x.svg",
+      "filename" : "streak-circle@2x.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "streak_circle@3x.svg",
+      "filename" : "streak-circle@3x.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -1,10 +1,9 @@
 <svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="160" cy="160" r="152" stroke="url(#paint0_linear_230_1197)" stroke-width="16"/>
+<circle cx="160" cy="160" r="152" stroke="url(#paint0_linear_508_2383)" stroke-width="16"/>
 <defs>
-<linearGradient id="paint0_linear_230_1197" x1="107" y1="7" x2="265" y2="278" gradientUnits="userSpaceOnUse">
-<stop stop-color="#DD3000"/>
-<stop offset="0.717791" stop-color="#DD3000"/>
-<stop offset="1" stop-color="#FF8A40"/>
+<linearGradient id="paint0_linear_508_2383" x1="107" y1="7" x2="446" y2="427" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D32F2F"/>
+<stop offset="1" stop-color="#FF9800"/>
 </linearGradient>
 </defs>
 </svg>
