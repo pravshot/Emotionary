@@ -56,24 +56,6 @@ struct ExpressionFeedItem: View {
                 }
                 .backgroundStyle(colorScheme == .dark ? .black : .white)
                 HStack(alignment: .top, spacing: 10) {
-                    Text(expression.title)
-                        .font(.title2)
-                        .bold()
-                    Spacer()
-                    ShareLink(
-                        item: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black)),
-                        subject: Text(expression.title),
-                        message: Text(expression.caption),
-                        preview: SharePreview(
-                            expression.title,
-                            image: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black))
-                        )
-                    ) {
-                        Image(systemName: "square.and.arrow.up")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 25)
-                    }
                     Button {
                         expression.favorite.toggle()
                     } label: {
@@ -83,6 +65,21 @@ struct ExpressionFeedItem: View {
                             .frame(height: 25)
                             .id(expression.favorite)
                             .transition(.scale.animation(.default))
+                    }
+                    Spacer()
+                    ShareLink(
+                        item: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black)),
+                        subject: Text(expression.prompt),
+                        message: Text(expression.caption),
+                        preview: SharePreview(
+                            "My Expression",
+                            image: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black))
+                        )
+                    ) {
+                        Image(systemName: "square.and.arrow.up")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 25)
                     }
                     Image(expression.emotion!.icon)
                         .resizable()
@@ -138,7 +135,6 @@ func getMaxPostHeight() -> CGFloat? {
         var expression = Expression(
             drawing: UIImage(systemName: "flame")?.pngData() ?? Data(),
             emotion: Emotion.happy,
-            title: "Flame",
             caption: "What a hot day outside!",
             date: Date().addingTimeInterval(-1000000),
             favorite: false

@@ -15,74 +15,20 @@ struct ExpressionForm: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
     
-    @FocusState private var isDescFocused: Bool
-    
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Spacer()
-                Image(uiImage: expression.getUIImage())
-                    .resizable()
-                    .scaledToFit()
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .inset(by: 0.5)
-                            .stroke(.gray.opacity(0.1), lineWidth: 1)
-                            .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
-                    )
-                Spacer()
-            }
-            HStack {
-                if UIDevice.isIPad { Spacer() }
-                VStack(alignment: .leading) {
-                    Text("This expression makes me feel...")
-                        .font(.title2)
-                    
-                    HStack(spacing: 20) {
-                        ForEach(Emotion.allCases) { emotion in
-                            Button {
-                                expression.emotion = emotion
-                            } label: {
-                                ZStack {
-                                    Image(emotion.grayed_icon)
-                                        .resizable()
-                                        .frame(width: 45, height: 45)
-                                    Image(emotion.icon)
-                                        .resizable()
-                                        .frame(width: 45, height: 45)
-                                        .opacity(expression.emotion == emotion ? 1 : 0)
-                                        .animation(.default, value: expression.emotion == emotion)
-                                }
-                            }
-                        }
-                    }
-                    
-                    TextField("Add Title", text: $expression.title)
-                        .font(.title3)
-                        .bold()
-                        .submitLabel(.done)
-                    TextField("Add Description", text: $expression.caption, axis: .vertical)
-                        .font(.callout)
-                        .foregroundStyle(.gray)
-                        .lineLimit(2, reservesSpace: false)
-                        .submitLabel(.done)
-                        .focused($isDescFocused)
-                        .onChange(of: expression.caption) {_, newValue in
-                            if newValue.last == "\n" {
-                                expression.caption.removeLast()
-                                isDescFocused = false
-                            }
-                        }
-                        .padding(.bottom)
+        Group {
+            if UIDevice.isIPhone {
+                VStack {
+                    ExpressionImageView(expression: $expression)
+                    FormView(expression: $expression)
+                    Spacer()
                 }
-                .frame(maxWidth: 315)
-                Spacer()
+            } else {
+                HStack {
+                    ExpressionImageView(expression: $expression)
+                    FormView(expression: $expression)
+                }
             }
-            
-            
-            Spacer()
         }
         .padding(.horizontal)
         .toolbar {
@@ -100,10 +46,10 @@ struct ExpressionForm: View {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 ShareLink(
                     item: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black)),
-                    subject: Text(expression.title.isEmpty ? expression.prompt : expression.title),
+                    subject: Text(expression.prompt),
                     message: Text(expression.caption),
                     preview: SharePreview(
-                        expression.title.isEmpty ? expression.prompt : expression.title,
+                        "My Expression",
                         image: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black))
                     )
                 )
@@ -112,12 +58,87 @@ struct ExpressionForm: View {
                     modelContext.insert(expression) // save expression
                     returnToHome()
                 }
-                .disabled((expression.emotion == nil) || expression.title.isEmpty)
+                .disabled(expression.emotion == nil)
             }
         }
         .navigationTitle("New Expression")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
+        
+        
+    }
+}
+
+struct iPhoneExpressionFormView: View {
+    var body: some View {
+        Text("Hello, world!")
+    }
+}
+
+
+struct ExpressionImageView : View {
+    @Binding var expression: Expression
+    var body: some View {
+        Image(uiImage: expression.getUIImage())
+            .resizable()
+            .scaledToFit()
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .padding()
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .inset(by: 0.5)
+                    .stroke(.gray.opacity(0.1), lineWidth: 1)
+                    .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
+            )
+    }
+}
+
+struct FormView: View {
+    @Binding var expression: Expression
+    @FocusState private var isDescFocused: Bool
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Tag an emotion!")
+                .font(.title2)
+                .fontWeight(.semibold)
+            
+            HStack(spacing: 20) {
+                ForEach(Emotion.allCases) { emotion in
+                    Button {
+                        expression.emotion = emotion
+                    } label: {
+                        ZStack {
+                            Image(emotion.grayed_icon)
+                                .resizable()
+                                .frame(width: 45, height: 45)
+                            Image(emotion.icon)
+                                .resizable()
+                                .frame(width: 45, height: 45)
+                                .opacity(expression.emotion == emotion ? 1 : 0)
+                                .animation(.default, value: expression.emotion == emotion)
+                        }
+                    }
+                }
+            }
+            
+            Divider()
+                .padding(.top, 4)
+            
+            TextField("Jot down a few thoughts...", text: $expression.caption, axis: .vertical)
+                .font(.body)
+                .foregroundStyle(.gray)
+                .lineLimit(5, reservesSpace: true)
+                .submitLabel(.done)
+                .focused($isDescFocused)
+                .onChange(of: expression.caption) {_, newValue in
+                    if newValue.last == "\n" {
+                        expression.caption.removeLast()
+                        isDescFocused = false
+                    }
+                }
+                .padding(.bottom)
+        }
+        .frame(maxWidth: 315)
     }
 }
 

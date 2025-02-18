@@ -11,7 +11,6 @@ import UIKit
 
 @Model
 final class Expression {
-    var title: String
     var caption: String
     var emotion: Emotion?
     @Attribute(.externalStorage) var drawing : Data
@@ -22,7 +21,6 @@ final class Expression {
     init(drawing: Data = Data(), 
          emotion: Emotion? = nil,
          prompt: String = Prompt.random(),
-         title: String = "",
          caption: String = "",
          date: Date = Date(),
          favorite: Bool = false)
@@ -30,7 +28,6 @@ final class Expression {
         self.drawing = drawing
         self.emotion = emotion
         self.prompt = prompt
-        self.title = title
         self.caption = caption
         self.date = date
         self.favorite = favorite
