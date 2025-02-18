@@ -42,6 +42,7 @@ struct ExpressionFeedItem: View {
                         Text("You cannot undo this action")
                     }
                 }
+                .backgroundStyle(colorScheme == .light ? .white : Color(UIColor.secondarySystemGroupedBackground))
                 GroupBox {
                     ZStack(alignment: .bottomTrailing) {
                         HStack {
@@ -108,15 +109,22 @@ struct ExpressionFeedItem: View {
                     Spacer()
                     Text(formatDate(expression.date))
                         .font(.headline)
-                        .foregroundStyle(.gray)
+                        .fontWeight(.bold)
+                        .foregroundStyle(Color(UIColor.lightGray))
                     Spacer()
                     
                 }
                 .padding(.top, 8)
             }
             .frame(maxWidth: 600, maxHeight: getMaxPostHeight())
-            
         }
+        .backgroundStyle(
+            RadialGradient(gradient: Gradient(colors: [.clear, expression.emotion!.color.opacity(0.35)]),
+                           center: .center,
+                           startRadius: 50,
+                           endRadius: 750
+            )
+        )
     }
 }
 
