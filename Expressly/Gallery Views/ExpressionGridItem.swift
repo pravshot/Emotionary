@@ -36,10 +36,10 @@ struct ExpressionGridItem: View {
                 .contextMenu {
                     ShareLink(
                         item: Image(uiImage: expressionImage),
-                        subject: Text(expression.title),
+                        subject: Text(expression.prompt),
                         message: Text(expression.caption),
                         preview: SharePreview(
-                            expression.title,
+                            "My Expression",
                             image: Image(uiImage: expressionImage)
                         )
                     ) {

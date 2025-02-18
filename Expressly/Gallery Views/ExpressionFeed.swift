@@ -44,7 +44,6 @@ struct ExpressionFeed: View {
             Expression(
                 drawing: UIImage(systemName: "flame")?.pngData() ?? Data(),
                 emotion: Emotion.happy,
-                title: "Flame",
                 caption: "What a hot day outside!",
                 date: Date(),
                 favorite: false
@@ -52,7 +51,6 @@ struct ExpressionFeed: View {
             Expression(
                 drawing: UIImage(systemName: "house")?.pngData() ?? Data(),
                 emotion: Emotion.sad,
-                title: "Home",
                 caption: "the price of the house is too expensive",
                 date: Date(),
                 favorite: true
