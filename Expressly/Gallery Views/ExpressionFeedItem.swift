@@ -43,56 +43,76 @@ struct ExpressionFeedItem: View {
                     }
                 }
                 GroupBox {
-                    HStack {
-                        Spacer()
-                        Image(uiImage: expression.getUIImage())
-                            .resizable()
-                            .scaledToFit()
-                            .onTapGesture(count: 2, perform: {
+                    ZStack(alignment: .bottomTrailing) {
+                        HStack {
+                            Spacer()
+                            Image(uiImage: expression.getUIImage())
+                                .resizable()
+                                .scaledToFit()
+                                .onTapGesture(count: 2, perform: {
+                                    expression.favorite.toggle()
+                                })
+                            Spacer()
+                        }
+                        HStack(spacing: 12) {
+                            Button {
                                 expression.favorite.toggle()
-                            })
-                        Spacer()
+                            } label: {
+                                Image(systemName: expression.favorite ? "star.fill" : "star")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 25)
+                                    .id(expression.favorite)
+                                    .transition(.scale.animation(.default))
+                            }
+                            ShareLink(
+                                item: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black)),
+                                subject: Text(expression.prompt),
+                                message: Text(expression.caption),
+                                preview: SharePreview(
+                                    "My Expression",
+                                    image: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black))
+                                )
+                            ) {
+                                Image(systemName: "square.and.arrow.up")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 25)
+                            }
+                            Image(expression.emotion!.icon)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 26)
+                        }
+                        .fixedSize()
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 10)
+                        .background(
+                            Capsule()
+                                .fill(.ultraThinMaterial)
+                                .overlay(
+                                    Capsule()
+                                        .stroke(.gray.opacity(0.1), lineWidth: 1)
+                                )
+                                .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
+                        )
+                        .offset(x:10, y:10)
                     }
                 }
                 .backgroundStyle(colorScheme == .dark ? .black : .white)
-                HStack(alignment: .top, spacing: 10) {
-                    Button {
-                        expression.favorite.toggle()
-                    } label: {
-                        Image(systemName: expression.favorite ? "star.fill" : "star")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 25)
-                            .id(expression.favorite)
-                            .transition(.scale.animation(.default))
-                    }
-                    Spacer()
-                    ShareLink(
-                        item: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black)),
-                        subject: Text(expression.prompt),
-                        message: Text(expression.caption),
-                        preview: SharePreview(
-                            "My Expression",
-                            image: Image(uiImage: expression.getUIImageWithBackground(colorScheme == .light ? .white : .black))
-                        )
-                    ) {
-                        Image(systemName: "square.and.arrow.up")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 25)
-                    }
-                    Image(expression.emotion!.icon)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 26)
-                }
                 if !expression.caption.isEmpty {
                     Text(expression.caption)
-                        .font(.callout)
+                        .font(.body)
                 }
-                Text(formatDate(expression.date))
-                    .font(.footnote)
-                    .foregroundStyle(.gray)
+                HStack(alignment: .bottom) {
+                    Spacer()
+                    Text(formatDate(expression.date))
+                        .font(.headline)
+                        .foregroundStyle(.gray)
+                    Spacer()
+                    
+                }
+                .padding(.top, 8)
             }
             .frame(maxWidth: 600, maxHeight: getMaxPostHeight())
             
@@ -102,22 +122,20 @@ struct ExpressionFeedItem: View {
 
 func formatDate(_ date: Date) -> String {
     let calendar = Calendar.current
-    // if year old
-    if date < calendar.date(byAdding: .year, value: -1, to: Date()) ?? Date.distantPast {
-        return date.formatted(date: .long, time: .omitted)
-    } 
-    // if week old
-    else if date < calendar.date(byAdding: .weekOfYear, value: -1, to: Date()) ?? Date.distantPast {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM d"
-        return dateFormatter.string(from: date)
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MMMM d"
+    let day = dateFormatter.string(from: date)
+    let timeOfDay = switch calendar.component(.hour, from: date) {
+        case 5..<12:
+            "Morning"
+        case 12..<17:
+            "Afternoon"
+        case 17..<21:
+            "Evening"
+        default:
+            "Night"
     }
-    // recent
-    else {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .full
-        return formatter.localizedString(for: date, relativeTo: Date())
-    }
+    return (day + " " + timeOfDay).uppercased()
 }
 
 func getMaxPostHeight() -> CGFloat? {
