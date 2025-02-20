@@ -115,11 +115,12 @@ struct DrawExpression: View {
                     // Color Selection
                     ColorPicker("", selection: drawingTool == .pen ? $penColor : $paintbrushColor)
                         .disabled(!isDrawing)
+                        .labelsHidden()
                     
                 }
                 .fixedSize()
                 .padding(.horizontal)
-                .padding(.vertical, 5)
+                .padding(.vertical, 8)
                 .background(
                     Capsule()
                         .fill(.ultraThinMaterial)
