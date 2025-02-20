@@ -86,9 +86,7 @@ struct ExpressionImageView : View {
             .padding()
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
-                    .inset(by: 0.5)
-                    .stroke(.gray.opacity(0.1), lineWidth: 1)
-                    .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
+                    .stroke(Color(UIColor.systemGray4), lineWidth: 1)
             )
     }
 }

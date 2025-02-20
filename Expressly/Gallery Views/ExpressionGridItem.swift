@@ -14,9 +14,6 @@ struct ExpressionGridItem: View {
     var expressionImage: UIImage {
         expression.getUIImageWithBackground(colorScheme == .light ? .white : .black)
     }
-    var shadowColor: Color {
-        colorScheme == .light ? .black.opacity(0.25) : .white.opacity(0.75)
-    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -26,7 +23,10 @@ struct ExpressionGridItem: View {
                 .frame(width: geometry.size.width, height: geometry.size.width)
                 .clipped()
                 .clipShape(.rect(cornerRadius: 8))
-                .shadow(color: shadowColor, radius: 2, x: 0, y: 1)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color(UIColor.systemGray4), lineWidth: 1)
+                )
                 .overlay(alignment: .bottomTrailing) {
                     Image(expression.emotion!.icon)
                         .resizable()
