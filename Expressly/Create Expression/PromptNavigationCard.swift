@@ -15,7 +15,7 @@ struct PromptNavigationCard: View {
             HStack {
                 Text(prompt)
                     .font(.subheadline)
-                    .foregroundStyle(.gray)
+                    .fontWeight(.medium)
                     .fixedSize(horizontal: false, vertical: true)
                 Spacer()
                 Image(systemName: "chevron.right")

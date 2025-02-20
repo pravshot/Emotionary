@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ExpressionPrompt: View {
+    @Environment(\.colorScheme) var colorScheme
     var prompt: String
     
     var body: some View {
@@ -15,11 +16,16 @@ struct ExpressionPrompt: View {
             HStack {
                 Text(prompt)
                     .font(.subheadline)
-                    .foregroundStyle(.gray)
+                    .fontWeight(.medium)
                     .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
+        .backgroundStyle(Color(UIColor.secondarySystemGroupedBackground))
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color(UIColor.systemGroupedBackground), lineWidth: 1)
+        )
     }
 }
 
