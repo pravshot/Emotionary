@@ -20,13 +20,14 @@ struct ExpressionForm: View {
             if UIDevice.isIPhone {
                 VStack {
                     ExpressionImageView(expression: $expression)
-                    FormView(expression: $expression)
+                    FormView(expression: $expression, lineSpace: 4)
                     Spacer()
                 }
             } else {
                 HStack {
                     ExpressionImageView(expression: $expression)
-                    FormView(expression: $expression)
+                    FormView(expression: $expression, lineSpace: 8)
+                        .padding(.leading)
                 }
             }
         }
@@ -54,6 +55,8 @@ struct ExpressionForm: View {
                     )
                 )
                 Button("Done") {
+                    // lower keyboard if raised
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     expression.date = Date()
                     modelContext.insert(expression) // save expression
                     returnToHome()
@@ -86,15 +89,14 @@ struct ExpressionImageView : View {
             .padding()
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
-                    .inset(by: 0.5)
-                    .stroke(.gray.opacity(0.1), lineWidth: 1)
-                    .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
+                    .stroke(Color(UIColor.systemGray4), lineWidth: 1)
             )
     }
 }
 
 struct FormView: View {
     @Binding var expression: Expression
+    var lineSpace: Int
     @FocusState private var isDescFocused: Bool
     var body: some View {
         VStack(alignment: .leading) {
@@ -102,7 +104,7 @@ struct FormView: View {
                 .font(.title2)
                 .fontWeight(.semibold)
             
-            HStack(spacing: 20) {
+            HStack {
                 ForEach(Emotion.allCases) { emotion in
                     Button {
                         expression.emotion = emotion
@@ -110,24 +112,27 @@ struct FormView: View {
                         ZStack {
                             Image(emotion.grayed_icon)
                                 .resizable()
-                                .frame(width: 45, height: 45)
+                                .frame(width: 50, height: 50)
                             Image(emotion.icon)
                                 .resizable()
-                                .frame(width: 45, height: 45)
+                                .frame(width: 50, height: 50)
                                 .opacity(expression.emotion == emotion ? 1 : 0)
                                 .animation(.default, value: expression.emotion == emotion)
                         }
+                    }
+                    if emotion.rawValue < 5 {
+                        Spacer()
                     }
                 }
             }
             
             Divider()
-                .padding(.top, 4)
+                .padding(.top, 8)
+                .padding(.bottom, 4)
             
             TextField("Jot down a few thoughts...", text: $expression.caption, axis: .vertical)
                 .font(.body)
-                .foregroundStyle(.gray)
-                .lineLimit(5, reservesSpace: true)
+                .lineLimit(lineSpace, reservesSpace: true)
                 .submitLabel(.done)
                 .focused($isDescFocused)
                 .onChange(of: expression.caption) {_, newValue in
@@ -138,7 +143,7 @@ struct FormView: View {
                 }
                 .padding(.bottom)
         }
-        .frame(maxWidth: 315)
+        .frame(maxWidth: 400)
     }
 }
 

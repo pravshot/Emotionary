@@ -39,6 +39,7 @@ struct DrawExpression: View {
             VStack {
                 ExpressionPrompt(prompt: expression.prompt)
                     .padding(.horizontal)
+                    .padding(.top, 4)
                     .id(refreshView)
                 CanvasView(canvas: $canvas,
                            penColor: $penColor,
@@ -115,11 +116,12 @@ struct DrawExpression: View {
                     // Color Selection
                     ColorPicker("", selection: drawingTool == .pen ? $penColor : $paintbrushColor)
                         .disabled(!isDrawing)
+                        .labelsHidden()
                     
                 }
                 .fixedSize()
                 .padding(.horizontal)
-                .padding(.vertical, 5)
+                .padding(.vertical, 8)
                 .background(
                     Capsule()
                         .fill(.ultraThinMaterial)
@@ -176,13 +178,19 @@ struct CanvasView: UIViewRepresentable {
     
     let onChange: () -> Void
     
+    let penStrokeWidth = 2.875
+    let paintbrushStrokeWidth = 22.5
     var ink: PKInkingTool {
         let color = drawingTool == .pen ? UIColor(penColor) : UIColor(paintbrushColor)
         let adjustedColor: UIColor = colorScheme == .dark ? PKInkingTool.convertColor(color, from: .light, to: .dark) : color
-        return PKInkingTool(drawingTool, color: adjustedColor)
+        let width = drawingTool == .pen ? penStrokeWidth : paintbrushStrokeWidth
+        return PKInkingTool(drawingTool == .pen ? .monoline : drawingTool , color: adjustedColor, width: width)
     }
     
-    let eraser = PKEraserTool(.bitmap)
+    let eraserWidth = 38.75
+    var eraser: PKEraserTool {
+        return PKEraserTool(.bitmap, width: eraserWidth)
+    }
     
     func makeUIView(context: Context) -> PKCanvasView {
         canvas.drawingPolicy = .anyInput

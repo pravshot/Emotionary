@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ExpressionFeed: View {
+    @Environment(\.presentationMode) var presentationMode
     @Query private var allExpressions: [Expression]
     var expressions: [Expression]
     var initialPosition: PersistentIdentifier
@@ -35,6 +36,19 @@ struct ExpressionFeed: View {
                 }
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("Back")
+                    }
+                }
+            }
+        }
+        .navigationBarBackButtonHidden()
     }
 }
 

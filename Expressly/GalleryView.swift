@@ -13,7 +13,7 @@ struct GalleryView: View {
     @State var selectedViewOption: GalleryViewOption = .Recents
     @State var selectedEmotion: Emotion = .neutral
     @Environment(\.colorScheme) var colorScheme
-    let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 3)
+    let columns = Array(repeating: GridItem(.flexible(), spacing: UIDevice.isIPhone ? 8 : 16), count: 3)
     
     var body: some View {
         NavigationStack {
@@ -56,7 +56,7 @@ struct GalleryView: View {
                                 }
                             }
                         }
-                        .padding(.vertical, 2)
+                        .padding(.vertical, 4)
                         .frame(maxWidth: 550)
                     }
                 }
@@ -69,7 +69,7 @@ struct GalleryView: View {
                 )
                 if !filteredExpressions.isEmpty {
                     ScrollView {
-                        LazyVGrid(columns: columns, alignment: .center, spacing: 8) {
+                        LazyVGrid(columns: columns, alignment: .center, spacing: UIDevice.isIPhone ? 8 : 16) {
                             ForEach(filteredExpressions) { expression in
                                 NavigationLink {
                                     ExpressionFeed(expressions: filteredExpressions, initialPosition: expression.id)
@@ -148,6 +148,7 @@ struct noResultsDisplay: View {
         Text(noResultsText)
             .font(.callout)
             .foregroundStyle(.gray)
+            .padding(.top, 4)
     }
 }
 
