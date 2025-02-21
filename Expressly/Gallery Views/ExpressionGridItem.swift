@@ -14,6 +14,9 @@ struct ExpressionGridItem: View {
     var expressionImage: UIImage {
         expression.getUIImageWithBackground(colorScheme == .light ? .white : .black)
     }
+    var emotionOverlaySize: CGFloat {
+        return UIDevice.isIPhone ? 32 : 48
+    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -30,8 +33,8 @@ struct ExpressionGridItem: View {
                 .overlay(alignment: .bottomTrailing) {
                     Image(expression.emotion!.icon)
                         .resizable()
-                        .frame(width: 32, height: 32)
-                        .offset(x: -2, y: -2)
+                        .frame(width: emotionOverlaySize, height: emotionOverlaySize)
+                        .offset(x: -3, y: -3)
                 }
                 .contextMenu {
                     ShareLink(
