@@ -177,13 +177,19 @@ struct CanvasView: UIViewRepresentable {
     
     let onChange: () -> Void
     
+    let penStrokeWidth = 2.875
+    let paintbrushStrokeWidth = 22.5
     var ink: PKInkingTool {
         let color = drawingTool == .pen ? UIColor(penColor) : UIColor(paintbrushColor)
         let adjustedColor: UIColor = colorScheme == .dark ? PKInkingTool.convertColor(color, from: .light, to: .dark) : color
-        return PKInkingTool(drawingTool, color: adjustedColor)
+        let width = drawingTool == .pen ? penStrokeWidth : paintbrushStrokeWidth
+        return PKInkingTool(drawingTool == .pen ? .monoline : drawingTool , color: adjustedColor, width: width)
     }
     
-    let eraser = PKEraserTool(.bitmap)
+    let eraserWidth = 38.75
+    var eraser: PKEraserTool {
+        return PKEraserTool(.bitmap, width: eraserWidth)
+    }
     
     func makeUIView(context: Context) -> PKCanvasView {
         canvas.drawingPolicy = .anyInput
