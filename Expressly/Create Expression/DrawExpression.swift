@@ -39,6 +39,7 @@ struct DrawExpression: View {
             VStack {
                 ExpressionPrompt(prompt: expression.prompt)
                     .padding(.horizontal)
+                    .padding(.top, 4)
                     .id(refreshView)
                 CanvasView(canvas: $canvas,
                            penColor: $penColor,
