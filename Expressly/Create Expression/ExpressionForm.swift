@@ -20,13 +20,14 @@ struct ExpressionForm: View {
             if UIDevice.isIPhone {
                 VStack {
                     ExpressionImageView(expression: $expression)
-                    FormView(expression: $expression)
+                    FormView(expression: $expression, lineSpace: 4)
                     Spacer()
                 }
             } else {
                 HStack {
                     ExpressionImageView(expression: $expression)
-                    FormView(expression: $expression)
+                    FormView(expression: $expression, lineSpace: 8)
+                        .padding(.leading)
                 }
             }
         }
@@ -93,6 +94,7 @@ struct ExpressionImageView : View {
 
 struct FormView: View {
     @Binding var expression: Expression
+    var lineSpace: Int
     @FocusState private var isDescFocused: Bool
     var body: some View {
         VStack(alignment: .leading) {
@@ -100,7 +102,7 @@ struct FormView: View {
                 .font(.title2)
                 .fontWeight(.semibold)
             
-            HStack(spacing: 20) {
+            HStack {
                 ForEach(Emotion.allCases) { emotion in
                     Button {
                         expression.emotion = emotion
@@ -108,24 +110,26 @@ struct FormView: View {
                         ZStack {
                             Image(emotion.grayed_icon)
                                 .resizable()
-                                .frame(width: 45, height: 45)
+                                .frame(width: 50, height: 50)
                             Image(emotion.icon)
                                 .resizable()
-                                .frame(width: 45, height: 45)
+                                .frame(width: 50, height: 50)
                                 .opacity(expression.emotion == emotion ? 1 : 0)
                                 .animation(.default, value: expression.emotion == emotion)
                         }
+                    }
+                    if emotion.rawValue < 5 {
+                        Spacer()
                     }
                 }
             }
             
             Divider()
-                .padding(.top, 4)
+                .padding(.top, 8)
             
             TextField("Jot down a few thoughts...", text: $expression.caption, axis: .vertical)
                 .font(.body)
-                .foregroundStyle(.gray)
-                .lineLimit(5, reservesSpace: true)
+                .lineLimit(lineSpace, reservesSpace: true)
                 .submitLabel(.done)
                 .focused($isDescFocused)
                 .onChange(of: expression.caption) {_, newValue in
@@ -136,7 +140,7 @@ struct FormView: View {
                 }
                 .padding(.bottom)
         }
-        .frame(maxWidth: 315)
+        .frame(maxWidth: 400)
     }
 }
 
