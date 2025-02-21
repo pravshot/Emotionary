@@ -55,6 +55,8 @@ struct ExpressionForm: View {
                     )
                 )
                 Button("Done") {
+                    // lower keyboard if raised
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     expression.date = Date()
                     modelContext.insert(expression) // save expression
                     returnToHome()
