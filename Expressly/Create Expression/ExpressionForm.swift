@@ -126,6 +126,7 @@ struct FormView: View {
             
             Divider()
                 .padding(.top, 8)
+                .padding(.bottom, 4)
             
             TextField("Jot down a few thoughts...", text: $expression.caption, axis: .vertical)
                 .font(.body)
