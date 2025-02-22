@@ -29,6 +29,7 @@ struct ExpressionForm: View {
                     FormView(expression: $expression, lineSpace: 8)
                         .padding(.leading)
                 }
+                .padding(.vertical)
             }
         }
         .padding(.horizontal)
